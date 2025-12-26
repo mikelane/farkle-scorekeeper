@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */; };
+		D6A9DBDEC8DC1B7B0A1439E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282FE08397C8DF77146BDD6A /* Assets.xcassets */; };
+		D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259CD983D628D307348BBF39 /* ScoringEngineTests.swift */; };
+		E02A5C4D285F9BE2BD02564C /* FarkleScorekeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B49899F396538ECB043CD672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E500CE4B613EA2A249D538F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C12B087A740DAA1B524DDB25;
+			remoteInfo = FarkleScorekeeper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		259CD983D628D307348BBF39 /* ScoringEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngineTests.swift; sourceTree = "<group>"; };
+		282FE08397C8DF77146BDD6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FarkleScorekeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarkleScorekeeperApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		08588AC480B03E3CA4B6D079 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		0DCD568F46373068AF59ED0A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		56DB2F768A74C2B947F37E5E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D0D9086063E5608BE4377FF2 /* Models */,
+				9CFEC5D93A4C25A5C7019565 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		725930FE2F3A1EFD8E2F8C5F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B6BD8DE302961B1F45A4BFAE /* Components */,
+				769C8A325677B16AADEA8EB7 /* Game */,
+				B0D533060DA2642001E6F6B8 /* Setup */,
+				820EE52C2674D85AE6256F4D /* Stats */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		762387F2E689D09F9D2CDD75 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */,
+				F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		769C8A325677B16AADEA8EB7 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		769CB54E02F94AFDDF808CF6 /* FarkleScorekeeperTests */ = {
+			isa = PBXGroup;
+			children = (
+				A57F8ED5FBF2F2C275FA5042 /* Data */,
+				A37730A91247B1A28E1C8F26 /* Domain */,
+				0DCD568F46373068AF59ED0A /* Presentation */,
+			);
+			path = FarkleScorekeeperTests;
+			sourceTree = "<group>";
+		};
+		7C9D5E638D4559CC6ADEFACC /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		820EE52C2674D85AE6256F4D /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		8C05E3ECD6FA21BC5DD6C1BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				282FE08397C8DF77146BDD6A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8E58FC8B02F0A5C8281F0990 = {
+			isa = PBXGroup;
+			children = (
+				C52CC34349F229A21394B0F4 /* FarkleScorekeeper */,
+				769CB54E02F94AFDDF808CF6 /* FarkleScorekeeperTests */,
+				D57186564B0AC9DBF62315C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		942496E4A59D7E122D772107 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				DB2BB2584AE6ED476368F860 /* Engine */,
+				08588AC480B03E3CA4B6D079 /* Entities */,
+				7C9D5E638D4559CC6ADEFACC /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		9CFEC5D93A4C25A5C7019565 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		A37730A91247B1A28E1C8F26 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				259CD983D628D307348BBF39 /* ScoringEngineTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A57F8ED5FBF2F2C275FA5042 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B0D533060DA2642001E6F6B8 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		B6BD8DE302961B1F45A4BFAE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C52CC34349F229A21394B0F4 /* FarkleScorekeeper */ = {
+			isa = PBXGroup;
+			children = (
+				762387F2E689D09F9D2CDD75 /* App */,
+				56DB2F768A74C2B947F37E5E /* Data */,
+				942496E4A59D7E122D772107 /* Domain */,
+				725930FE2F3A1EFD8E2F8C5F /* Presentation */,
+				8C05E3ECD6FA21BC5DD6C1BF /* Resources */,
+			);
+			path = FarkleScorekeeper;
+			sourceTree = "<group>";
+		};
+		D0D9086063E5608BE4377FF2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D57186564B0AC9DBF62315C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */,
+				D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB2BB2584AE6ED476368F860 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FF4897AA708441BD99A265C /* Build configuration list for PBXNativeTarget "FarkleScorekeeper" */;
+			buildPhases = (
+				D9B77ABF9FD3F8B6030E2EFC /* Sources */,
+				E84CC6281568B8AEF68F0DE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FarkleScorekeeper;
+			packageProductDependencies = (
+			);
+			productName = FarkleScorekeeper;
+			productReference = E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E35A66185D8EA4DFAC6EA22C /* FarkleScorekeeperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AA97F7E19001A4751FE0146 /* Build configuration list for PBXNativeTarget "FarkleScorekeeperTests" */;
+			buildPhases = (
+				056112D50FBAF59FAD8F62F0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D614DC708D55D4747059426D /* PBXTargetDependency */,
+			);
+			name = FarkleScorekeeperTests;
+			packageProductDependencies = (
+			);
+			productName = FarkleScorekeeperTests;
+			productReference = D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E500CE4B613EA2A249D538F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 4185A5DD1CA7C7E29F539831 /* Build configuration list for PBXProject "FarkleScorekeeper" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8E58FC8B02F0A5C8281F0990;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */,
+				E35A66185D8EA4DFAC6EA22C /* FarkleScorekeeperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E84CC6281568B8AEF68F0DE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6A9DBDEC8DC1B7B0A1439E9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		056112D50FBAF59FAD8F62F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9B77ABF9FD3F8B6030E2EFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */,
+				E02A5C4D285F9BE2BD02564C /* FarkleScorekeeperApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D614DC708D55D4747059426D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */;
+			targetProxy = B49899F396538ECB043CD672 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3064CFCA428FAE6C8BDA6F28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeper;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		344697EBAE9F86594AD6F632 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeperTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FarkleScorekeeper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FarkleScorekeeper";
+			};
+			name = Release;
+		};
+		35A907806D442665FFB3D2C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeper;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		90613AD5D17D06C230EC0190 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		A078D471AD873B5D2F9582B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		DBB70D1D518FCC597ADDD057 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeperTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FarkleScorekeeper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FarkleScorekeeper";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2AA97F7E19001A4751FE0146 /* Build configuration list for PBXNativeTarget "FarkleScorekeeperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBB70D1D518FCC597ADDD057 /* Debug */,
+				344697EBAE9F86594AD6F632 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4185A5DD1CA7C7E29F539831 /* Build configuration list for PBXProject "FarkleScorekeeper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90613AD5D17D06C230EC0190 /* Debug */,
+				A078D471AD873B5D2F9582B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4FF4897AA708441BD99A265C /* Build configuration list for PBXNativeTarget "FarkleScorekeeper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35A907806D442665FFB3D2C8 /* Debug */,
+				3064CFCA428FAE6C8BDA6F28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E500CE4B613EA2A249D538F0 /* Project object */;
+}

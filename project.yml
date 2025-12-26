@@ -1,0 +1,74 @@
+name: FarkleScorekeeper
+options:
+  bundleIdPrefix: com.mikelane
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: 1
+    GENERATE_INFOPLIST_FILE: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+    SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  FarkleScorekeeper:
+    type: application
+    platform: iOS
+    sources:
+      - path: FarkleScorekeeper
+        excludes:
+          - "**/*.xctest"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mikelane.FarkleScorekeeper
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+    dependencies: []
+
+  FarkleScorekeeperTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: FarkleScorekeeperTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mikelane.FarkleScorekeeperTests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/FarkleScorekeeper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FarkleScorekeeper"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+    dependencies:
+      - target: FarkleScorekeeper
+
+schemes:
+  FarkleScorekeeper:
+    build:
+      targets:
+        FarkleScorekeeper: all
+        FarkleScorekeeperTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      coverageTargets:
+        - FarkleScorekeeper
+      targets:
+        - FarkleScorekeeperTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
