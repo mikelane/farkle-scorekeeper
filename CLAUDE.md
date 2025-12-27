@@ -4,7 +4,7 @@ iOS app for keeping score of Farkle with configurable house rules.
 
 ## Tech Stack
 
-- **Platform**: iOS 26+
+- **Platform**: iOS 17+
 - **UI**: SwiftUI
 - **Persistence**: SwiftData
 - **Architecture**: Hexagonal Architecture (Ports & Adapters) with MVVM presentation
