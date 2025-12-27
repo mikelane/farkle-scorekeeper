@@ -11,11 +11,9 @@ struct GameView: View {
         VStack(spacing: 0) {
             turnHeader
             Divider()
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: true) {
                 ScoreInputPadView(viewModel: viewModel)
-                    .frame(maxWidth: .infinity)
             }
-            .scrollBounceBehavior(.basedOnSize)
         }
         .overlay {
             if viewModel.isGameOver {
