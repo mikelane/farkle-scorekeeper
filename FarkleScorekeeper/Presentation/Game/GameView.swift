@@ -8,12 +8,16 @@ struct GameView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            turnHeader
-            Divider()
-            ScrollView(.vertical, showsIndicators: true) {
-                ScoreInputPadView(viewModel: viewModel)
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                turnHeader
+                Divider()
+                ScrollView(.vertical, showsIndicators: true) {
+                    ScoreInputPadView(viewModel: viewModel)
+                }
+                .frame(maxHeight: .infinity)
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .overlay {
             if viewModel.isGameOver {
