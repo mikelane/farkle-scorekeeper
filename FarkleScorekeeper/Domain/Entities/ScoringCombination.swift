@@ -1,6 +1,6 @@
 /// Represents a scoring combination in Farkle.
 /// Pure domain entity - no external dependencies.
-enum ScoringCombination {
+enum ScoringCombination: Sendable {
     case singleOne
     case singleFive
     case threeOfAKind(dieValue: Int)

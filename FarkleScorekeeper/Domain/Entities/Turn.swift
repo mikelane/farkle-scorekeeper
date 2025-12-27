@@ -1,6 +1,6 @@
 /// Represents a player's turn in Farkle.
 /// Pure domain entity - no external dependencies.
-struct Turn {
+struct Turn: Sendable {
     var score: Int = 0
     var diceRemaining: Int = 6
     var isFirstRoll: Bool = true

@@ -8,15 +8,11 @@ struct GameView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    turnHeader
-                    Divider()
-                    ScoreInputPadView(viewModel: viewModel)
-                }
+        ScrollView {
+            VStack(spacing: 0) {
+                turnHeader
+                ScoreInputPadView(viewModel: viewModel)
             }
-            .navigationBarTitleDisplayMode(.inline)
         }
         .overlay {
             if viewModel.isGameOver {

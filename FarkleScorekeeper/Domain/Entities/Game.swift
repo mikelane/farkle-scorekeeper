@@ -1,6 +1,6 @@
 import Foundation
 
-struct Game {
+struct Game: Sendable {
     private(set) var players: [Player]
     private(set) var currentPlayerIndex: Int = 0
     private(set) var currentTurn: Turn
