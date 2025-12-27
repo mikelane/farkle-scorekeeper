@@ -2,8 +2,8 @@ name: FarkleScorekeeper
 options:
   bundleIdPrefix: com.mikelane
   deploymentTarget:
-    iOS: "17.0"
-  xcodeVersion: "15.0"
+    iOS: "26.0"
+  xcodeVersion: "16.0"
   createIntermediateGroups: true
   generateEmptyDirectories: true
 
