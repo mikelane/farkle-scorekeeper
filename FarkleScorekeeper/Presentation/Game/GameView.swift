@@ -13,7 +13,9 @@ struct GameView: View {
             Divider()
             ScrollView {
                 ScoreInputPadView(viewModel: viewModel)
+                    .frame(maxWidth: .infinity)
             }
+            .scrollBounceBehavior(.basedOnSize)
         }
         .overlay {
             if viewModel.isGameOver {
