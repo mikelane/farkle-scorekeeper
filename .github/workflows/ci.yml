@@ -25,11 +25,14 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
+      - name: List Simulators
+        run: xcrun simctl list devices available | head -30
+
       - name: Build
         run: |
           xcodebuild build \
             -scheme FarkleScorekeeper \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
@@ -38,7 +41,7 @@ jobs:
         run: |
           xcodebuild test \
             -scheme FarkleScorekeeper \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
             -configuration Debug \
             -resultBundlePath TestResults.xcresult \
             CODE_SIGN_IDENTITY="" \
