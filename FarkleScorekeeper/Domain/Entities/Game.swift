@@ -14,6 +14,8 @@ struct Game: Sendable {
     private(set) var winner: Player?
     let houseRules: HouseRules
     private var finalRoundTriggerPlayerIndex: Int?
+    private(set) var currentDefenderIndex: Int?
+    private(set) var eliminatedPlayerIndices: Set<Int> = []
 
     var targetScore: Int {
         houseRules.targetScore
@@ -62,6 +64,11 @@ struct Game: Sendable {
             if houseRules.finalRoundEnabled {
                 if !isInFinalRound {
                     finalRoundTriggerPlayerIndex = currentPlayerIndex
+                    if houseRules.defendYourWin {
+                        currentDefenderIndex = currentPlayerIndex
+                    }
+                } else if houseRules.defendYourWin {
+                    updateDefenderIfOvertaken()
                 }
                 advanceToNextPlayer()
                 checkForGameEnd()
@@ -77,7 +84,19 @@ struct Game: Sendable {
         return true
     }
 
+    private mutating func updateDefenderIfOvertaken() {
+        guard let defenderIndex = currentDefenderIndex else { return }
+        let defenderScore = players[defenderIndex].score
+        let currentScore = players[currentPlayerIndex].score
+        if currentScore > defenderScore {
+            currentDefenderIndex = currentPlayerIndex
+        }
+    }
+
     mutating func farkle() {
+        if houseRules.defendYourWin && isInFinalRound {
+            eliminatedPlayerIndices.insert(currentPlayerIndex)
+        }
         advanceToNextPlayer()
         checkForGameEnd()
     }
@@ -89,7 +108,20 @@ struct Game: Sendable {
 
     private mutating func advanceToNextPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.count
+
+        if houseRules.defendYourWin && isInFinalRound {
+            skipEliminatedPlayers()
+        }
+
         currentTurn = Turn()
+    }
+
+    private mutating func skipEliminatedPlayers() {
+        var attempts = 0
+        while eliminatedPlayerIndices.contains(currentPlayerIndex) && attempts < players.count {
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.count
+            attempts += 1
+        }
     }
 
     private mutating func checkForGameEnd() {
@@ -97,9 +129,20 @@ struct Game: Sendable {
             return
         }
 
-        if currentPlayerIndex == triggerIndex {
+        if houseRules.defendYourWin {
+            checkDefendModeGameEnd()
+        } else if currentPlayerIndex == triggerIndex {
             isGameOver = true
             winner = players.max(by: { $0.score < $1.score })
+        }
+    }
+
+    private mutating func checkDefendModeGameEnd() {
+        guard let defenderIndex = currentDefenderIndex else { return }
+
+        if currentPlayerIndex == defenderIndex {
+            isGameOver = true
+            winner = players[defenderIndex]
         }
     }
 }

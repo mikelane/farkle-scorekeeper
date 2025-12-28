@@ -466,4 +466,213 @@ final class GameTests: XCTestCase {
 
         XCTAssertEqual(game.finalRoundState, .completed)
     }
+
+    // MARK: - Defend Your Win Tests
+
+    func test_defendYourWin_playerBeatsLeader_becomesNewDefender() {
+        // Given: Alice triggered the final round with 10200 points
+        // Bob is playing and banks enough to reach 10500 points
+        // Then: Bob becomes the new leader and must defend
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice gets 1150 points (triggers final round)
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+        XCTAssertEqual(game.currentDefenderIndex, 0, "Alice should be initial defender")
+
+        // Bob gets 2100 points (beats Alice)
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob should be new defender")
+        XCTAssertFalse(game.isGameOver, "Game should continue for defense round")
+    }
+
+    func test_defendYourWin_previousLeaderGetsChanceToReclaim() {
+        // Given: Bob beat Alice with higher score
+        // When it becomes Alice's turn
+        // Then Alice has one turn to beat Bob
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers final round with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob beats Alice with 2100
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob should be defender")
+        XCTAssertEqual(game.currentPlayerIndex, 2, "Charlie is next")
+
+        // Charlie doesn't beat Bob (scores only 450)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Now Alice (previous leader) gets a chance to reclaim
+        XCTAssertEqual(game.currentPlayer.name, "Alice")
+        XCTAssertFalse(game.isGameOver, "Alice should get a turn to beat Bob")
+    }
+
+    func test_defendYourWin_chainOfOvertakes() {
+        // Given: Bob beat Alice, then Charlie beats Bob
+        // Then: Charlie must defend, Alice and Bob get turns to beat Charlie
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers final round with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob beats Alice with 2100
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob should be defender")
+
+        // Charlie beats Bob with 3000
+        game.addScore(.fiveOfAKind)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 2, "Charlie should be new defender")
+        XCTAssertFalse(game.isGameOver, "Alice and Bob should get turns")
+    }
+
+    func test_defendYourWin_defenderWinsWhenAllChallengersFail() {
+        // Given: Alice is defending with score
+        // When: Bob and Charlie bank but don't beat Alice
+        // Then: Alice wins the game
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers and defends with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob scores 450 (doesn't beat Alice)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertFalse(game.isGameOver, "Game continues - Charlie hasn't played")
+
+        // Charlie scores 450 (doesn't beat Alice)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isGameOver, "Game should end - all challengers failed")
+        XCTAssertEqual(game.winner?.name, "Alice", "Alice should win as defender")
+    }
+
+    func test_defendYourWin_defenderWinsWhenAllChallengersFarkle() {
+        // Given: Alice is defending
+        // When: Bob farkles and Charlie farkles
+        // Then: Alice wins the game
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers and defends with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob farkles
+        game.farkle()
+
+        XCTAssertFalse(game.isGameOver, "Game continues - Charlie hasn't played")
+
+        // Charlie farkles
+        game.farkle()
+
+        XCTAssertTrue(game.isGameOver, "Game should end - all challengers farkled")
+        XCTAssertEqual(game.winner?.name, "Alice", "Alice should win as defender")
+    }
+
+    func test_defendYourWin_farkledPlayerEliminatedFromDefenseRounds() {
+        // Given: Alice triggers, Bob farkles, Charlie beats Alice
+        // Then: Only Alice gets turn to beat Charlie (Bob eliminated)
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 0, "Alice is defender")
+
+        // Bob farkles (eliminated)
+        game.farkle()
+
+        XCTAssertTrue(game.eliminatedPlayerIndices.contains(1), "Bob should be eliminated")
+        XCTAssertEqual(game.currentPlayer.name, "Charlie")
+
+        // Charlie beats Alice with 3000
+        game.addScore(.fiveOfAKind)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 2, "Charlie is new defender")
+        // Alice should get turn, Bob (eliminated) should be skipped
+        XCTAssertEqual(game.currentPlayer.name, "Alice", "Should be Alice's turn, Bob skipped")
+        XCTAssertFalse(game.isGameOver, "Game should continue")
+
+        // Alice fails to beat Charlie
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Should end - all non-eliminated players had their turn
+        XCTAssertTrue(game.isGameOver, "Game should end")
+        XCTAssertEqual(game.winner?.name, "Charlie", "Charlie should win")
+    }
+
+    func test_defendYourWin_eliminatedPlayersSkipped() {
+        // Verify that eliminated players are skipped in the turn order
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob farkles (eliminated)
+        game.farkle()
+
+        XCTAssertTrue(game.eliminatedPlayerIndices.contains(1), "Bob should be eliminated")
+        XCTAssertEqual(game.currentPlayer.name, "Charlie", "Should skip to Charlie")
+
+        // Charlie beats Alice
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 2, "Charlie is defender")
+        // Alice should get a turn, but Bob (eliminated) should be skipped
+        XCTAssertEqual(game.currentPlayer.name, "Alice", "Should be Alice's turn, Bob skipped")
+    }
 }
