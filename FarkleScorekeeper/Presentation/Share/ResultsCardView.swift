@@ -64,7 +64,7 @@ struct ResultsCardView: View {
 
             Spacer()
 
-            Text(formatScore(player.score))
+            Text(GameResultsFormatter.formatScore(player.score))
                 .font(.system(.body, design: .rounded))
                 .fontWeight(.semibold)
                 .foregroundStyle(isFirst ? Color.yellow : Color.white.opacity(0.9))
@@ -114,13 +114,6 @@ struct ResultsCardView: View {
                 .foregroundStyle(.white.opacity(0.5))
                 .padding(.vertical, 16)
         }
-    }
-
-    private func formatScore(_ score: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = ","
-        return formatter.string(from: NSNumber(value: score)) ?? "\(score)"
     }
 }
 

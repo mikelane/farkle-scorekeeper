@@ -60,6 +60,89 @@ final class GameResultsFormatterTests: XCTestCase {
         XCTAssertTrue(result.contains("4th: Dave"))
     }
 
+    // MARK: - Ordinal Suffix Edge Cases
+
+    func test_formatCurrentStandings_11thPlace_usesTh() {
+        let players = (1...11).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("11th: Player11"), "11th should use 'th' suffix, not 'st'")
+    }
+
+    func test_formatCurrentStandings_12thPlace_usesTh() {
+        let players = (1...12).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("12th: Player12"), "12th should use 'th' suffix, not 'nd'")
+    }
+
+    func test_formatCurrentStandings_13thPlace_usesTh() {
+        let players = (1...13).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("13th: Player13"), "13th should use 'th' suffix, not 'rd'")
+    }
+
+    func test_formatCurrentStandings_21stPlace_usesSt() {
+        let players = (1...21).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("21st: Player21"), "21st should use 'st' suffix")
+    }
+
+    func test_formatCurrentStandings_22ndPlace_usesNd() {
+        let players = (1...22).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("22nd: Player22"), "22nd should use 'nd' suffix")
+    }
+
+    func test_formatCurrentStandings_23rdPlace_usesRd() {
+        let players = (1...23).map { PlayerResult(name: "Player\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("23rd: Player23"), "23rd should use 'rd' suffix")
+    }
+
+    func test_formatCurrentStandings_111thPlace_usesTh() {
+        let players = (1...111).map { PlayerResult(name: "P\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("111th: P111"), "111th should use 'th' suffix (teens rule applies to x11)")
+    }
+
+    func test_formatCurrentStandings_112thPlace_usesTh() {
+        let players = (1...112).map { PlayerResult(name: "P\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("112th: P112"), "112th should use 'th' suffix (teens rule applies to x12)")
+    }
+
+    func test_formatCurrentStandings_113thPlace_usesTh() {
+        let players = (1...113).map { PlayerResult(name: "P\($0)", score: 1000 - $0, rank: $0) }
+        let formatter = GameResultsFormatter()
+
+        let result = formatter.formatCurrentStandings(players: players)
+
+        XCTAssertTrue(result.contains("113th: P113"), "113th should use 'th' suffix (teens rule applies to x13)")
+    }
+
     // MARK: - Header and Footer
 
     func test_format_includesGameTitle() {

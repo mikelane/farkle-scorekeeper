@@ -8,12 +8,16 @@ struct PlayerResult: Equatable, Sendable {
 
 struct GameResultsFormatter: Sendable {
 
-    private let numberFormatter: NumberFormatter = {
+    private static let sharedNumberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","
         return formatter
     }()
+
+    static func formatScore(_ score: Int) -> String {
+        sharedNumberFormatter.string(from: NSNumber(value: score)) ?? "\(score)"
+    }
 
     func format(players: [PlayerResult]) -> String {
         var lines: [String] = []
@@ -76,7 +80,7 @@ struct GameResultsFormatter: Sendable {
     }
 
     private func formatScore(_ score: Int) -> String {
-        numberFormatter.string(from: NSNumber(value: score)) ?? "\(score)"
+        Self.formatScore(score)
     }
 
     private func positionLabel(for rank: Int, isGameOver: Bool) -> String {
@@ -84,11 +88,19 @@ struct GameResultsFormatter: Sendable {
             return "🏆 Winner"
         }
 
-        switch rank {
-        case 1: return "1st"
-        case 2: return "2nd"
-        case 3: return "3rd"
-        default: return "\(rank)th"
+        return "\(rank)\(ordinalSuffix(for: rank))"
+    }
+
+    private func ordinalSuffix(for number: Int) -> String {
+        let tens = (number % 100) / 10
+        if tens == 1 {
+            return "th"
+        }
+        switch number % 10 {
+        case 1: return "st"
+        case 2: return "nd"
+        case 3: return "rd"
+        default: return "th"
         }
     }
 }

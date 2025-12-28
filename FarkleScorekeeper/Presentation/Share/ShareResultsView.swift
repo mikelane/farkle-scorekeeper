@@ -4,8 +4,7 @@ struct ShareResultsView: View {
     let players: [PlayerResult]
     let isGameOver: Bool
 
-    @State private var shareImage: Image?
-    @State private var renderedImage: UIImage?
+    @State private var renderedImage: IdentifiableImage?
 
     private let formatter = GameResultsFormatter()
 
@@ -27,8 +26,8 @@ struct ShareResultsView: View {
             Image(systemName: "square.and.arrow.up")
                 .accessibilityLabel("Share Results")
         }
-        .sheet(item: $renderedImage) { image in
-            ShareImageSheet(image: image)
+        .sheet(item: $renderedImage) { identifiableImage in
+            ShareImageSheet(image: identifiableImage.image)
         }
     }
 
@@ -46,15 +45,14 @@ struct ShareResultsView: View {
         renderer.scale = UIScreen.main.scale
 
         if let uiImage = renderer.uiImage {
-            renderedImage = uiImage
+            renderedImage = IdentifiableImage(image: uiImage)
         }
     }
 }
 
-extension UIImage: @retroactive Identifiable {
-    public var id: Int {
-        hashValue
-    }
+struct IdentifiableImage: Identifiable {
+    let id = UUID()
+    let image: UIImage
 }
 
 private struct ShareImageSheet: View {
