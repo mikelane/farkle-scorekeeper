@@ -11,7 +11,7 @@ final class StatisticsRepositoryTests: XCTestCase {
     private var repository: StatisticsRepository!
 
     override func setUp() async throws {
-        let schema = Schema([PlayerStatistics.self])
+        let schema = Schema([PlayerStatisticsRecord.self])
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         modelContainer = try ModelContainer(for: schema, configurations: [configuration])
         modelContext = modelContainer.mainContext
@@ -33,8 +33,8 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_fetchStatistics_whenStatisticsExist_returnsStatistics() async throws {
-        let stats = PlayerStatistics(playerName: "Alice")
-        modelContext.insert(stats)
+        let record = PlayerStatisticsRecord(playerName: "Alice")
+        modelContext.insert(record)
         try modelContext.save()
 
         let result = try repository.fetchStatistics(for: "Alice")
@@ -44,12 +44,12 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_fetchStatistics_returnsCorrectPlayerStats() async throws {
-        let aliceStats = PlayerStatistics(playerName: "Alice")
-        aliceStats.gamesPlayed = 10
-        let bobStats = PlayerStatistics(playerName: "Bob")
-        bobStats.gamesPlayed = 5
-        modelContext.insert(aliceStats)
-        modelContext.insert(bobStats)
+        let aliceRecord = PlayerStatisticsRecord(playerName: "Alice")
+        aliceRecord.gamesPlayed = 10
+        let bobRecord = PlayerStatisticsRecord(playerName: "Bob")
+        bobRecord.gamesPlayed = 5
+        modelContext.insert(aliceRecord)
+        modelContext.insert(bobRecord)
         try modelContext.save()
 
         let result = try repository.fetchStatistics(for: "Alice")
@@ -67,9 +67,9 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_fetchOrCreateStatistics_whenStatisticsExist_returnsExistingStatistics() async throws {
-        let stats = PlayerStatistics(playerName: "Alice")
-        stats.gamesPlayed = 10
-        modelContext.insert(stats)
+        let record = PlayerStatisticsRecord(playerName: "Alice")
+        record.gamesPlayed = 10
+        modelContext.insert(record)
         try modelContext.save()
 
         let result = try repository.fetchOrCreateStatistics(for: "Alice")
@@ -81,7 +81,7 @@ final class StatisticsRepositoryTests: XCTestCase {
         _ = try repository.fetchOrCreateStatistics(for: "Alice")
         try modelContext.save()
 
-        let fetchDescriptor = FetchDescriptor<PlayerStatistics>(
+        let fetchDescriptor = FetchDescriptor<PlayerStatisticsRecord>(
             predicate: #Predicate { $0.playerName == "Alice" }
         )
         let results = try modelContext.fetch(fetchDescriptor)
@@ -101,11 +101,11 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_recordGameResult_whenStatisticsExist_updatesExistingStatistics() async throws {
-        let stats = PlayerStatistics(playerName: "Alice")
-        stats.gamesPlayed = 5
-        stats.gamesWon = 3
-        stats.totalPoints = 50000
-        modelContext.insert(stats)
+        let record = PlayerStatisticsRecord(playerName: "Alice")
+        record.gamesPlayed = 5
+        record.gamesWon = 3
+        record.totalPoints = 50000
+        modelContext.insert(record)
         try modelContext.save()
 
         try repository.recordGameResult(for: "Alice", score: 12000, didWin: true)
@@ -117,9 +117,9 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_recordGameResult_updatesHighestScore_whenNewHighScore() async throws {
-        let stats = PlayerStatistics(playerName: "Alice")
-        stats.highestGameScore = 10000
-        modelContext.insert(stats)
+        let record = PlayerStatisticsRecord(playerName: "Alice")
+        record.highestGameScore = 10000
+        modelContext.insert(record)
         try modelContext.save()
 
         try repository.recordGameResult(for: "Alice", score: 15000, didWin: true)
@@ -129,9 +129,9 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_recordGameResult_keepsHighestScore_whenScoreIsLower() async throws {
-        let stats = PlayerStatistics(playerName: "Alice")
-        stats.highestGameScore = 15000
-        modelContext.insert(stats)
+        let record = PlayerStatisticsRecord(playerName: "Alice")
+        record.highestGameScore = 15000
+        modelContext.insert(record)
         try modelContext.save()
 
         try repository.recordGameResult(for: "Alice", score: 10000, didWin: false)
@@ -149,9 +149,9 @@ final class StatisticsRepositoryTests: XCTestCase {
     }
 
     func test_fetchAllStatistics_returnsAllPlayerStatistics() async throws {
-        modelContext.insert(PlayerStatistics(playerName: "Alice"))
-        modelContext.insert(PlayerStatistics(playerName: "Bob"))
-        modelContext.insert(PlayerStatistics(playerName: "Charlie"))
+        modelContext.insert(PlayerStatisticsRecord(playerName: "Alice"))
+        modelContext.insert(PlayerStatisticsRecord(playerName: "Bob"))
+        modelContext.insert(PlayerStatisticsRecord(playerName: "Charlie"))
         try modelContext.save()
 
         let results = try repository.fetchAllStatistics()

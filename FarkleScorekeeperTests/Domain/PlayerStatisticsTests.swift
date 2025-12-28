@@ -120,7 +120,7 @@ final class PlayerStatisticsTests: XCTestCase {
         XCTAssertEqual(stats.averageScore, 10166)
     }
 
-    func test_averageScore_roundsDownToNearestInteger() {
+    func test_averageScore_truncatesToInteger_whenDivisionHasRemainder() {
         var stats = PlayerStatistics(playerName: "Alice")
         stats.gamesPlayed = 3
         stats.totalPoints = 30501
