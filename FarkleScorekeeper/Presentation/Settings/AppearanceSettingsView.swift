@@ -19,16 +19,6 @@ struct AppearanceSettingsView: View {
             } footer: {
                 Text("Choose how Farkle Scorekeeper appears. System follows your device settings.")
             }
-
-            Section {
-                Toggle(isOn: $themeManager.highContrastEnabled) {
-                    Label("High Contrast", systemImage: "circle.hexagongrid.fill")
-                }
-            } header: {
-                Text("Accessibility")
-            } footer: {
-                Text("Increases contrast and adds borders for better visibility.")
-            }
         }
         .navigationTitle("Appearance")
         .navigationBarTitleDisplayMode(.inline)

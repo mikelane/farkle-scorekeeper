@@ -188,7 +188,7 @@ struct ScoreInputPadView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.farkleButton)
+                    .background(AppColors.Button.farkleBackground)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
@@ -201,7 +201,7 @@ struct ScoreInputPadView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(viewModel.canBank ? Color.bankEnabled : AppColors.Button.bankDisabledBackground)
+                    .background(viewModel.canBank ? AppColors.Button.bankEnabledBackground : AppColors.Button.bankDisabledBackground)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
@@ -242,7 +242,7 @@ struct CombinationButtonLabel: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
-        .background(isEnabled ? Color.buttonEnabled : Color.buttonDisabled)
+        .background(isEnabled ? AppColors.Button.enabledBackground : AppColors.Button.disabledBackground)
         .foregroundStyle(isEnabled ? AppColors.Button.enabledForeground : AppColors.Button.disabledForeground)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }

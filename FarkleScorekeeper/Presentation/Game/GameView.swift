@@ -36,7 +36,7 @@ struct GameView: View {
                     Text("\(viewModel.turnScore)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundStyle(Color.turnScore)
+                        .foregroundStyle(AppColors.Score.turnScore)
                         .accessibilityIdentifier("turnScore")
                 }
 
@@ -47,7 +47,7 @@ struct GameView: View {
                     Text("\(viewModel.diceRemaining)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundStyle(viewModel.diceRemaining <= 2 ? Color.canBank : .primary)
+                        .foregroundStyle(viewModel.diceRemaining <= 2 ? AppColors.Score.canBank : .primary)
                         .accessibilityIdentifier("diceRemaining")
                 }
 
@@ -65,11 +65,11 @@ struct GameView: View {
             if viewModel.mustRoll && viewModel.diceRemaining > 0 {
                 Text("Must continue rolling")
                     .font(.caption)
-                    .foregroundStyle(Color.mustRoll)
+                    .foregroundStyle(AppColors.Score.mustRoll)
             } else if viewModel.canBank {
                 Text("Can bank or continue")
                     .font(.caption)
-                    .foregroundStyle(Color.canBank)
+                    .foregroundStyle(AppColors.Score.canBank)
             }
         }
         .padding()

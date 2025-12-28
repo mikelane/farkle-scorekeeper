@@ -26,17 +26,10 @@ enum AppearancePreference: String, CaseIterable {
 final class ThemeManager {
     private let userDefaults: UserDefaults
     private let appearanceKey = "appearancePreference"
-    private let highContrastKey = "highContrastEnabled"
 
     var appearancePreference: AppearancePreference {
         didSet {
             userDefaults.set(appearancePreference.rawValue, forKey: appearanceKey)
-        }
-    }
-
-    var highContrastEnabled: Bool {
-        didSet {
-            userDefaults.set(highContrastEnabled, forKey: highContrastKey)
         }
     }
 
@@ -57,7 +50,5 @@ final class ThemeManager {
         } else {
             self.appearancePreference = .system
         }
-
-        self.highContrastEnabled = userDefaults.bool(forKey: highContrastKey)
     }
 }

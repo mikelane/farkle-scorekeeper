@@ -64,26 +64,6 @@ final class ThemeManagerTests: XCTestCase {
         XCTAssertEqual(sut.colorScheme, .dark)
     }
 
-    // MARK: - High Contrast Tests
-
-    func test_highContrastEnabled_defaultsToFalse() {
-        XCTAssertFalse(sut.highContrastEnabled)
-    }
-
-    func test_highContrastEnabled_persistsTrueValue() {
-        sut.highContrastEnabled = true
-
-        let newManager = ThemeManager(userDefaults: mockDefaults)
-        XCTAssertTrue(newManager.highContrastEnabled)
-    }
-
-    func test_highContrastEnabled_persistsFalseValue() {
-        sut.highContrastEnabled = true
-        sut.highContrastEnabled = false
-
-        let newManager = ThemeManager(userDefaults: mockDefaults)
-        XCTAssertFalse(newManager.highContrastEnabled)
-    }
 }
 
 // MARK: - AppearancePreference Tests

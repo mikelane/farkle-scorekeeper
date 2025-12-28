@@ -61,27 +61,4 @@ enum AppColors {
         }
     }
 
-    // MARK: - High Contrast Variants
-
-    enum HighContrast {
-        static var borderColor: Color {
-            Color.primary
-        }
-
-        static var borderWidth: CGFloat {
-            2
-        }
-    }
-}
-
-// MARK: - Convenience Extensions
-
-extension Color {
-    static var buttonEnabled: Color { AppColors.Button.enabledBackground }
-    static var buttonDisabled: Color { AppColors.Button.disabledBackground }
-    static var farkleButton: Color { AppColors.Button.farkleBackground }
-    static var bankEnabled: Color { AppColors.Button.bankEnabledBackground }
-    static var turnScore: Color { AppColors.Score.turnScore }
-    static var canBank: Color { AppColors.Score.canBank }
-    static var mustRoll: Color { AppColors.Score.mustRoll }
 }
