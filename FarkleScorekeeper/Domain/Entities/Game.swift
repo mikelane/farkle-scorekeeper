@@ -6,8 +6,12 @@ struct Game: Sendable {
     private(set) var currentTurn: Turn
     private(set) var isGameOver: Bool = false
     private(set) var winner: Player?
-    let targetScore: Int
+    let houseRules: HouseRules
     private var finalRoundTriggerPlayerIndex: Int?
+
+    var targetScore: Int {
+        houseRules.targetScore
+    }
 
     var currentPlayer: Player {
         players[currentPlayerIndex]
@@ -18,8 +22,12 @@ struct Game: Sendable {
     }
 
     init(playerNames: [String], targetScore: Int = 10000) {
+        self.init(playerNames: playerNames, houseRules: HouseRules(targetScore: targetScore))
+    }
+
+    init(playerNames: [String], houseRules: HouseRules) {
         self.players = playerNames.map { Player(id: UUID(), name: $0) }
-        self.targetScore = targetScore
+        self.houseRules = houseRules
         self.currentTurn = Turn()
     }
 
@@ -34,12 +42,22 @@ struct Game: Sendable {
 
         players[currentPlayerIndex].score += currentTurn.score
 
-        if !isInFinalRound && players[currentPlayerIndex].score >= targetScore {
-            finalRoundTriggerPlayerIndex = currentPlayerIndex
+        if players[currentPlayerIndex].score >= targetScore {
+            if houseRules.finalRoundEnabled {
+                if !isInFinalRound {
+                    finalRoundTriggerPlayerIndex = currentPlayerIndex
+                }
+                advanceToNextPlayer()
+                checkForGameEnd()
+            } else {
+                isGameOver = true
+                winner = currentPlayer
+            }
+        } else {
+            advanceToNextPlayer()
+            checkForGameEnd()
         }
 
-        advanceToNextPlayer()
-        checkForGameEnd()
         return true
     }
 

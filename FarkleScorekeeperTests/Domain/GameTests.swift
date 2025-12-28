@@ -188,7 +188,7 @@ final class GameTests: XCTestCase {
         XCTAssertFalse(game.isInFinalRound)
     }
 
-    func test_bankPoints_triggersFinaRound_whenPlayerReachesTargetScore() {
+    func test_bankPoints_triggersFinalRound_whenPlayerReachesTargetScore() {
         var game = Game(playerNames: ["Alice", "Bob"], targetScore: 1000)
         game.addScore(.threeOfAKind(dieValue: 1))
         game.addScore(.singleOne)
@@ -252,5 +252,77 @@ final class GameTests: XCTestCase {
         game.declareInstantWin()
 
         XCTAssertFalse(game.isInFinalRound)
+    }
+
+    // MARK: - HouseRules Tests
+
+    func test_init_withHouseRules_usesTargetScoreFromRules() {
+        let rules = HouseRules(targetScore: 7500)
+        let game = Game(playerNames: ["Alice"], houseRules: rules)
+
+        XCTAssertEqual(game.targetScore, 7500)
+    }
+
+    func test_init_withHouseRules_storesHouseRules() {
+        let rules = HouseRules(
+            targetScore: 5000,
+            finalRoundEnabled: false,
+            defendYourWin: true
+        )
+        let game = Game(playerNames: ["Alice"], houseRules: rules)
+
+        XCTAssertEqual(game.houseRules, rules)
+    }
+
+    func test_init_withDefaultHouseRules_usesDefaultTargetScore() {
+        let game = Game(playerNames: ["Alice"], houseRules: HouseRules())
+
+        XCTAssertEqual(game.targetScore, 10000)
+    }
+
+    func test_init_withoutHouseRules_usesDefaultHouseRules() {
+        let game = Game(playerNames: ["Alice"])
+
+        XCTAssertEqual(game.houseRules, HouseRules())
+    }
+
+    // MARK: - Final Round Disabled Tests
+
+    func test_bankPoints_whenFinalRoundDisabled_endsGameImmediatelyOnReachingTarget() {
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: false)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isGameOver)
+        XCTAssertEqual(game.winner?.name, "Alice")
+    }
+
+    func test_bankPoints_whenFinalRoundDisabled_doesNotTriggerFinalRound() {
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: false)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+
+        _ = game.bankPoints()
+
+        XCTAssertFalse(game.isInFinalRound)
+    }
+
+    func test_bankPoints_whenFinalRoundEnabled_triggersStandardFinalRound() {
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+        XCTAssertFalse(game.isGameOver)
     }
 }
