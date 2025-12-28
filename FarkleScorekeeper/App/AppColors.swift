@@ -61,4 +61,11 @@ enum AppColors {
         }
     }
 
+    // MARK: - Turn History Colors
+
+    enum TurnHistory {
+        static var background: Color {
+            Color(.secondarySystemBackground)
+        }
+    }
 }

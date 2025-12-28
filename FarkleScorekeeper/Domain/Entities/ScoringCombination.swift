@@ -1,6 +1,6 @@
 /// Represents a scoring combination in Farkle.
 /// Pure domain entity - no external dependencies.
-enum ScoringCombination: Sendable {
+enum ScoringCombination: Sendable, Equatable {
     case singleOne
     case singleFive
     case threeOfAKind(dieValue: Int)
@@ -78,6 +78,39 @@ enum ScoringCombination: Sendable {
             return true
         default:
             return false
+        }
+    }
+
+    var displayName: String {
+        switch self {
+        case .singleOne:
+            return "Single 1"
+        case .singleFive:
+            return "Single 5"
+        case .threeOfAKind(let dieValue):
+            return "Three \(dieValue)s"
+        case .fourOfAKind:
+            return "Four of a Kind"
+        case .fiveOfAKind:
+            return "Five of a Kind"
+        case .sixOfAKind:
+            return "Six of a Kind"
+        case .sixOnes:
+            return "Six 1s!"
+        case .fullHouse(let tripletValue):
+            return "Full House (\(tripletValue)s)"
+        case .fullMansion:
+            return "Full Mansion"
+        case .threePairs:
+            return "Three Pairs"
+        case .twoTriplets:
+            return "Two Triplets"
+        case .smallStraight:
+            return "Small Straight"
+        case .largeStraight:
+            return "Large Straight"
+        case .sixDiceFarkle:
+            return "Six-Dice Farkle"
         }
     }
 }

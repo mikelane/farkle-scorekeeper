@@ -27,6 +27,7 @@
 		692C663E90E0828B0AA50954 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C95312878359D9576CEE3C /* PlayerTests.swift */; };
 		69EA2B2ADFAFE95FA0204A00 /* TurnManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED837878B135478BEB8310F /* TurnManagementTests.swift */; };
 		6B91316350812D4A0466A249 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFAB3FF3D403320C5C77CB2 /* Game.swift */; };
+		76FE62E007F7D12208D0DF29 /* TurnHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119440FEB5EF7E8182C593F /* TurnHistoryView.swift */; };
 		7EDE0C27AE2377C887A98466 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A1A5570E7A562D5FB7EE5 /* Player.swift */; };
 		7FFE95DDFA3D307E3E686984 /* GameResultsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CADD1CF07415BD96060A5E /* GameResultsFormatter.swift */; };
 		885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0119440FEB5EF7E8182C593F /* TurnHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnHistoryView.swift; sourceTree = "<group>"; };
 		0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombination.swift; sourceTree = "<group>"; };
 		1382C21E6049070C614B97EB /* HouseRulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesViewModel.swift; sourceTree = "<group>"; };
 		19B5F5672730FD5906D4FFBF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				F1029ADDF2BE0A8F49E7676A /* GameView.swift */,
 				847808F6895C4BC0F590EDCD /* GameViewModel.swift */,
 				4A904A6AF840A78751FF02B2 /* ScoreInputPadView.swift */,
+				0119440FEB5EF7E8182C593F /* TurnHistoryView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				0461A4F4EB04A27F083376F4 /* StatisticsRepositoryProtocol.swift in Sources */,
 				B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */,
 				4516F33F7EB35C2DB81A07B9 /* Turn.swift in Sources */,
+				76FE62E007F7D12208D0DF29 /* TurnHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

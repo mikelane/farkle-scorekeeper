@@ -9,8 +9,10 @@ struct GameView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(spacing: 16) {
                 turnHeader
+                TurnHistoryView(scoringHistory: viewModel.turnScoringHistory)
+                    .padding(.horizontal)
                 ScoreInputPadView(viewModel: viewModel)
             }
         }

@@ -233,4 +233,96 @@ final class ScoringCombinationTests: XCTestCase {
 
         XCTAssertFalse(combination.requiresFirstRoll)
     }
+
+    // MARK: - Display Name Tests
+
+    func test_singleOne_displayNameIsSingle1() {
+        let combination = ScoringCombination.singleOne
+
+        XCTAssertEqual(combination.displayName, "Single 1")
+    }
+
+    func test_singleFive_displayNameIsSingle5() {
+        let combination = ScoringCombination.singleFive
+
+        XCTAssertEqual(combination.displayName, "Single 5")
+    }
+
+    func test_threeOfAKindWithOnes_displayNameIs3Ones() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 1)
+
+        XCTAssertEqual(combination.displayName, "Three 1s")
+    }
+
+    func test_threeOfAKindWithTwos_displayNameIs3Twos() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 2)
+
+        XCTAssertEqual(combination.displayName, "Three 2s")
+    }
+
+    func test_fourOfAKind_displayNameIs4OfAKind() {
+        let combination = ScoringCombination.fourOfAKind
+
+        XCTAssertEqual(combination.displayName, "Four of a Kind")
+    }
+
+    func test_fiveOfAKind_displayNameIs5OfAKind() {
+        let combination = ScoringCombination.fiveOfAKind
+
+        XCTAssertEqual(combination.displayName, "Five of a Kind")
+    }
+
+    func test_sixOfAKind_displayNameIs6OfAKind() {
+        let combination = ScoringCombination.sixOfAKind
+
+        XCTAssertEqual(combination.displayName, "Six of a Kind")
+    }
+
+    func test_sixOnes_displayNameIsSixOnes() {
+        let combination = ScoringCombination.sixOnes
+
+        XCTAssertEqual(combination.displayName, "Six 1s!")
+    }
+
+    func test_fullHouseWithThrees_displayNameIsFullHouse() {
+        let combination = ScoringCombination.fullHouse(tripletValue: 3)
+
+        XCTAssertEqual(combination.displayName, "Full House (3s)")
+    }
+
+    func test_fullMansion_displayNameIsFullMansion() {
+        let combination = ScoringCombination.fullMansion
+
+        XCTAssertEqual(combination.displayName, "Full Mansion")
+    }
+
+    func test_threePairs_displayNameIsThreePairs() {
+        let combination = ScoringCombination.threePairs
+
+        XCTAssertEqual(combination.displayName, "Three Pairs")
+    }
+
+    func test_twoTriplets_displayNameIsTwoTriplets() {
+        let combination = ScoringCombination.twoTriplets
+
+        XCTAssertEqual(combination.displayName, "Two Triplets")
+    }
+
+    func test_smallStraight_displayNameIsSmallStraight() {
+        let combination = ScoringCombination.smallStraight
+
+        XCTAssertEqual(combination.displayName, "Small Straight")
+    }
+
+    func test_largeStraight_displayNameIsLargeStraight() {
+        let combination = ScoringCombination.largeStraight
+
+        XCTAssertEqual(combination.displayName, "Large Straight")
+    }
+
+    func test_sixDiceFarkle_displayNameIs6DiceFarkle() {
+        let combination = ScoringCombination.sixDiceFarkle
+
+        XCTAssertEqual(combination.displayName, "Six-Dice Farkle")
+    }
 }
