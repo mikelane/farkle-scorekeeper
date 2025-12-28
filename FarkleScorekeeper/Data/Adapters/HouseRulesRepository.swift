@@ -1,6 +1,6 @@
 import Foundation
 
-final class HouseRulesRepository: Sendable {
+final class HouseRulesRepository: @unchecked Sendable {
     static let storageKey = "houseRules"
 
     private let userDefaults: UserDefaults

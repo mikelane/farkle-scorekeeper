@@ -188,7 +188,7 @@ final class GameTests: XCTestCase {
         XCTAssertFalse(game.isInFinalRound)
     }
 
-    func test_bankPoints_triggersFinaRound_whenPlayerReachesTargetScore() {
+    func test_bankPoints_triggersFinalRound_whenPlayerReachesTargetScore() {
         var game = Game(playerNames: ["Alice", "Bob"], targetScore: 1000)
         game.addScore(.threeOfAKind(dieValue: 1))
         game.addScore(.singleOne)

@@ -24,7 +24,6 @@
 		8D8F33BD104F4979D6C608BE /* HouseRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888193B2951F5E1F6569C52F /* HouseRules.swift */; };
 		981206CB9ABAB82D68E91668 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847808F6895C4BC0F590EDCD /* GameViewModel.swift */; };
 		99803217770BE8998AAD15EE /* ThemeManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789101188F925843DC8482B4 /* ThemeManagerTests.swift */; };
-		A099D98E9114A1EB865E61AA /* HouseRulesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C427A2D700EB3D9FD16CBC /* HouseRulesRepository.swift */; };
 		AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */; };
 		AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1029ADDF2BE0A8F49E7676A /* GameView.swift */; };
 		B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663647530A697BD5C80326F3 /* ThemeManager.swift */; };
@@ -37,6 +36,7 @@
 		D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259CD983D628D307348BBF39 /* ScoringEngineTests.swift */; };
 		DD91E1FF0E6E3094FA837F7D /* ScoringCombinationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */; };
 		E02A5C4D285F9BE2BD02564C /* FarkleScorekeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */; };
+		E384D69843A3CC56151B050F /* HouseRulesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C666A33AD64CEE66B3B88EF1 /* HouseRulesRepository.swift */; };
 		EE8F08653CDC35529F92CC3B /* GameResultsFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80545181684A93E7A171451F /* GameResultsFormatterTests.swift */; };
 		F46DDDFCE8EE673F07F37FF5 /* HouseRulesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82307F05E5FA6289DE28CA99 /* HouseRulesRepositoryTests.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07C427A2D700EB3D9FD16CBC /* HouseRulesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesRepository.swift; sourceTree = "<group>"; };
 		0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombination.swift; sourceTree = "<group>"; };
 		19B5F5672730FD5906D4FFBF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		21CADD1CF07415BD96060A5E /* GameResultsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsFormatter.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationTests.swift; sourceTree = "<group>"; };
 		97E7F19EDAC7D1905A3BBA2C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		C4163E863B427F0513920E79 /* ShareResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareResultsView.swift; sourceTree = "<group>"; };
+		C666A33AD64CEE66B3B88EF1 /* HouseRulesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesRepository.swift; sourceTree = "<group>"; };
 		CC956C1862E234CBD2FFA020 /* HouseRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesTests.swift; sourceTree = "<group>"; };
 		D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +155,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		56DB2F768A74C2B947F37E5E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9D967C120DD4D9B8150B8AE6 /* Adapters */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		6BEB5440320FDFC6413C0516 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +196,6 @@
 				97E7F19EDAC7D1905A3BBA2C /* AppColors.swift */,
 				D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */,
 				F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */,
-				07C427A2D700EB3D9FD16CBC /* HouseRulesRepository.swift */,
 				663647530A697BD5C80326F3 /* ThemeManager.swift */,
 			);
 			path = App;
@@ -248,6 +255,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		9D967C120DD4D9B8150B8AE6 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				C666A33AD64CEE66B3B88EF1 /* HouseRulesRepository.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
 		A37730A91247B1A28E1C8F26 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				762387F2E689D09F9D2CDD75 /* App */,
+				56DB2F768A74C2B947F37E5E /* Data */,
 				942496E4A59D7E122D772107 /* Domain */,
 				725930FE2F3A1EFD8E2F8C5F /* Presentation */,
 				8C05E3ECD6FA21BC5DD6C1BF /* Resources */,
@@ -427,7 +443,7 @@
 				AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */,
 				981206CB9ABAB82D68E91668 /* GameViewModel.swift in Sources */,
 				8D8F33BD104F4979D6C608BE /* HouseRules.swift in Sources */,
-				A099D98E9114A1EB865E61AA /* HouseRulesRepository.swift in Sources */,
+				E384D69843A3CC56151B050F /* HouseRulesRepository.swift in Sources */,
 				7EDE0C27AE2377C887A98466 /* Player.swift in Sources */,
 				D3A9B1E50BB8E9DEFCEF1BF1 /* ResultsCardView.swift in Sources */,
 				04953B68D7F90A866A24D5D8 /* ScoreInputPadView.swift in Sources */,

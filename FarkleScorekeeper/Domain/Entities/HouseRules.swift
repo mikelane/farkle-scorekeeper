@@ -3,6 +3,8 @@ import Foundation
 struct HouseRules: Equatable, Codable, Sendable {
     let targetScore: Int
     let finalRoundEnabled: Bool
+    /// When true, players who reach the target score must survive one more round
+    /// where opponents can overtake them. (Future implementation)
     let defendYourWin: Bool
 
     static let presetTargetScores = [5000, 7500, 10000, 15000]
