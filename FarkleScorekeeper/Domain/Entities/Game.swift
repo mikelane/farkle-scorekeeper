@@ -1,5 +1,11 @@
 import Foundation
 
+enum FinalRoundState: Equatable, Sendable {
+    case notStarted
+    case inProgress(triggerPlayerIndex: Int)
+    case completed
+}
+
 struct Game: Sendable {
     private(set) var players: [Player]
     private(set) var currentPlayerIndex: Int = 0
@@ -19,6 +25,16 @@ struct Game: Sendable {
 
     var isInFinalRound: Bool {
         finalRoundTriggerPlayerIndex != nil
+    }
+
+    var finalRoundState: FinalRoundState {
+        guard let triggerIndex = finalRoundTriggerPlayerIndex else {
+            return .notStarted
+        }
+        if isGameOver {
+            return .completed
+        }
+        return .inProgress(triggerPlayerIndex: triggerIndex)
     }
 
     init(playerNames: [String], targetScore: Int = 10000) {
