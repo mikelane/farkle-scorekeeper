@@ -36,7 +36,7 @@ struct GameView: View {
                     Text("\(viewModel.turnScore)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(Color.turnScore)
                         .accessibilityIdentifier("turnScore")
                 }
 
@@ -47,7 +47,7 @@ struct GameView: View {
                     Text("\(viewModel.diceRemaining)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundStyle(viewModel.diceRemaining <= 2 ? .green : .primary)
+                        .foregroundStyle(viewModel.diceRemaining <= 2 ? Color.canBank : .primary)
                         .accessibilityIdentifier("diceRemaining")
                 }
 
@@ -65,11 +65,11 @@ struct GameView: View {
             if viewModel.mustRoll && viewModel.diceRemaining > 0 {
                 Text("Must continue rolling")
                     .font(.caption)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(Color.mustRoll)
             } else if viewModel.canBank {
                 Text("Can bank or continue")
                     .font(.caption)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(Color.canBank)
             }
         }
         .padding()
@@ -77,7 +77,7 @@ struct GameView: View {
 
     private var gameOverOverlay: some View {
         ZStack {
-            Color.black.opacity(0.7)
+            AppColors.GameOver.overlayBackground
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
@@ -89,7 +89,7 @@ struct GameView: View {
                 if let winner = viewModel.winnerName {
                     Text("\(winner) Wins!")
                         .font(.title)
-                        .foregroundStyle(.yellow)
+                        .foregroundStyle(AppColors.GameOver.winnerHighlight)
                 }
             }
         }

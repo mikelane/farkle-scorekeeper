@@ -12,7 +12,7 @@ struct ScoreInputPadView: View {
             actionButtons
         }
         .padding()
-        .id("\(viewModel.diceRemaining)-\(viewModel.turnScore)")  // Force re-render when state changes
+        .id("\(viewModel.diceRemaining)-\(viewModel.turnScore)")
     }
 
     private var singleDiceCombinations: some View {
@@ -188,7 +188,7 @@ struct ScoreInputPadView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.red.opacity(0.8))
+                    .background(Color.farkleButton)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
@@ -201,7 +201,7 @@ struct ScoreInputPadView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(viewModel.canBank ? Color.green : Color.gray)
+                    .background(viewModel.canBank ? Color.bankEnabled : AppColors.Button.bankDisabledBackground)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
@@ -242,8 +242,8 @@ struct CombinationButtonLabel: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
-        .background(isEnabled ? Color.blue.opacity(0.8) : Color.gray.opacity(0.3))
-        .foregroundStyle(isEnabled ? .white : .secondary)
+        .background(isEnabled ? Color.buttonEnabled : Color.buttonDisabled)
+        .foregroundStyle(isEnabled ? AppColors.Button.enabledForeground : AppColors.Button.disabledForeground)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
