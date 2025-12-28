@@ -51,6 +51,10 @@ struct Game: Sendable {
         currentTurn.addScore(combination)
     }
 
+    mutating func undoLastScore() {
+        currentTurn.undoLastScore()
+    }
+
     mutating func bankPoints() -> Bool {
         guard currentTurn.canBank else {
             return false

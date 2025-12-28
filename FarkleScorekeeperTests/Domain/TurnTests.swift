@@ -193,4 +193,123 @@ final class TurnTests: XCTestCase {
 
         XCTAssertEqual(turn.scoringHistory.count, 2)
     }
+
+    // MARK: - undoLastScore Tests
+
+    func test_undoLastScore_subtractsCombinationPointsFromScore() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 0)
+    }
+
+    func test_undoLastScore_restoresDiceRemaining() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.diceRemaining, 6)
+    }
+
+    func test_undoLastScore_removesFromScoringHistory() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+
+        turn.undoLastScore()
+
+        XCTAssertTrue(turn.scoringHistory.isEmpty)
+    }
+
+    func test_undoLastScore_restoresIsFirstRoll_whenUndoingOnlyEntry() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+
+        turn.undoLastScore()
+
+        XCTAssertTrue(turn.isFirstRoll)
+    }
+
+    func test_undoLastScore_keepsIsFirstRollFalse_whenHistoryNotEmpty() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+        turn.addScore(.singleFive)
+
+        turn.undoLastScore()
+
+        XCTAssertFalse(turn.isFirstRoll)
+    }
+
+    func test_undoLastScore_undoesMultipleEntriesInSequence() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+        turn.addScore(.singleFive)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 100)
+        XCTAssertEqual(turn.diceRemaining, 5)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 0)
+        XCTAssertEqual(turn.diceRemaining, 6)
+    }
+
+    func test_undoLastScore_doesNothing_whenHistoryEmpty() {
+        var turn = Turn()
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 0)
+        XCTAssertEqual(turn.diceRemaining, 6)
+        XCTAssertTrue(turn.isFirstRoll)
+    }
+
+    func test_undoLastScore_afterHotDice_restoresPreviousState() {
+        var turn = Turn()
+        turn.addScore(.largeStraight)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 0)
+        XCTAssertEqual(turn.diceRemaining, 6)
+        XCTAssertTrue(turn.isFirstRoll)
+    }
+
+    func test_undoLastScore_afterScoringPostHotDice_restoresHotDiceState() {
+        var turn = Turn()
+        turn.addScore(.largeStraight)
+        turn.addScore(.singleOne)
+
+        turn.undoLastScore()
+
+        XCTAssertEqual(turn.score, 1500)
+        XCTAssertEqual(turn.diceRemaining, 6)
+    }
+
+    // MARK: - canUndo Tests
+
+    func test_canUndo_onNewTurn_isFalse() {
+        let turn = Turn()
+
+        XCTAssertFalse(turn.canUndo)
+    }
+
+    func test_canUndo_afterAddingScore_isTrue() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+
+        XCTAssertTrue(turn.canUndo)
+    }
+
+    func test_canUndo_afterUndoingAllEntries_isFalse() {
+        var turn = Turn()
+        turn.addScore(.singleOne)
+        turn.undoLastScore()
+
+        XCTAssertFalse(turn.canUndo)
+    }
 }
