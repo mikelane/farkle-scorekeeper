@@ -325,4 +325,145 @@ final class GameTests: XCTestCase {
         XCTAssertTrue(game.isInFinalRound)
         XCTAssertFalse(game.isGameOver)
     }
+
+    func test_bankPoints_exactlyReachingTargetScore_triggersFinalRound() {
+        var game = Game(playerNames: ["Alice", "Bob"], targetScore: 450)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+        XCTAssertEqual(game.players[0].score, 450)
+    }
+
+    // MARK: - Three Player Final Round Tests
+
+    func test_threePlayerGame_allOtherPlayersGetOneFinalTurn() {
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], targetScore: 450)
+        XCTAssertEqual(game.currentPlayerIndex, 0, "Alice starts")
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound, "Final round should have started")
+        XCTAssertEqual(game.currentPlayerIndex, 1, "Bob's turn")
+        XCTAssertEqual(game.currentPlayer.name, "Bob")
+        XCTAssertFalse(game.isGameOver, "Game should not be over after Alice banks")
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentPlayerIndex, 2, "Charlie's turn")
+        XCTAssertEqual(game.currentPlayer.name, "Charlie")
+        XCTAssertFalse(game.isGameOver, "Game should not be over after Bob banks")
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isGameOver, "Game should be over after Charlie banks")
+    }
+
+    func test_triggerPlayerDoesNotGetAnotherTurn() {
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], targetScore: 450)
+        var aliceTurnCount = 0
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+        aliceTurnCount += 1
+
+        while !game.isGameOver {
+            if game.currentPlayer.name == "Alice" {
+                aliceTurnCount += 1
+            }
+            game.addScore(.threeOfAKind(dieValue: 3))
+            game.addScore(.singleOne)
+            game.addScore(.singleFive)
+            _ = game.bankPoints()
+        }
+
+        XCTAssertEqual(aliceTurnCount, 1)
+    }
+
+    func test_farkle_inFinalRound_stillAdvancesAndEndsGame() {
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], targetScore: 450)
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+
+        game.farkle()
+        XCTAssertEqual(game.currentPlayer.name, "Charlie")
+        XCTAssertFalse(game.isGameOver)
+
+        game.farkle()
+        XCTAssertTrue(game.isGameOver)
+    }
+
+    func test_highestScoreWins_afterFinalRound_withThreePlayers() {
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], targetScore: 450)
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.winner?.name, "Bob")
+        XCTAssertEqual(game.players[0].score, 450)
+        XCTAssertEqual(game.players[1].score, 2100)
+        XCTAssertEqual(game.players[2].score, 450)
+    }
+
+    // MARK: - FinalRoundState Tests
+
+    func test_finalRoundState_initiallyNotStarted() {
+        let game = Game(playerNames: ["Alice", "Bob"])
+
+        XCTAssertEqual(game.finalRoundState, .notStarted)
+    }
+
+    func test_finalRoundState_inProgress_afterTrigger() {
+        var game = Game(playerNames: ["Alice", "Bob", "Charlie"], targetScore: 450)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.finalRoundState, .inProgress(triggerPlayerIndex: 0))
+    }
+
+    func test_finalRoundState_completed_afterGameEnds() {
+        var game = Game(playerNames: ["Alice", "Bob"], targetScore: 450)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.finalRoundState, .completed)
+    }
 }
