@@ -145,6 +145,20 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.isCombinationAvailable(.sixDiceFarkle))
     }
 
+    func test_isCombinationAvailable_singleOne_afterAddingSingleFive_isTrue() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleFive)  // Uses 1 die, leaves 5
+
+        XCTAssertTrue(viewModel.isCombinationAvailable(.singleOne))
+    }
+
+    func test_isCombinationAvailable_threeOfAKind_afterAddingSingleOne_isTrue() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)  // Uses 1 die, leaves 5
+
+        XCTAssertTrue(viewModel.isCombinationAvailable(.threeOfAKind(dieValue: 2)))
+    }
+
     // MARK: - Game State Tests
 
     func test_isGameOver_initiallyFalse() {

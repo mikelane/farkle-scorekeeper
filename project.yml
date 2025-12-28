@@ -51,12 +51,26 @@ targets:
     dependencies:
       - target: FarkleScorekeeper
 
+  FarkleScorekeeperUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: FarkleScorekeeperUITests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mikelane.FarkleScorekeeperUITests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: FarkleScorekeeper
+    dependencies:
+      - target: FarkleScorekeeper
+
 schemes:
   FarkleScorekeeper:
     build:
       targets:
         FarkleScorekeeper: all
         FarkleScorekeeperTests: [test]
+        FarkleScorekeeperUITests: [test]
     run:
       config: Debug
     test:
@@ -66,6 +80,7 @@ schemes:
         - FarkleScorekeeper
       targets:
         - FarkleScorekeeperTests
+        - FarkleScorekeeperUITests
     profile:
       config: Release
     analyze:

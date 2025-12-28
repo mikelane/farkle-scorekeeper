@@ -163,6 +163,20 @@ final class TurnTests: XCTestCase {
         XCTAssertEqual(turn.score, 1500)
     }
 
+    func test_addScore_automaticallyTriggersHotDice_whenDiceReachZero() {
+        var turn = Turn()
+        turn.addScore(.largeStraight)  // Uses all 6 dice
+
+        XCTAssertEqual(turn.diceRemaining, 6)  // Should auto-reset to 6
+    }
+
+    func test_addScore_keepsScore_whenHotDiceTriggered() {
+        var turn = Turn()
+        turn.addScore(.largeStraight)  // Uses all 6 dice, triggers hot dice
+
+        XCTAssertEqual(turn.score, 1500)  // Score preserved
+    }
+
     // MARK: - scoringHistory Tests
 
     func test_newTurn_hasEmptyScoringHistory() {

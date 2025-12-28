@@ -10,7 +10,9 @@
 		04953B68D7F90A866A24D5D8 /* ScoreInputPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904A6AF840A78751FF02B2 /* ScoreInputPadView.swift */; };
 		152022153865E612D5ECE2AF /* TurnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610A8EED5BECAF21F12CD82 /* TurnTests.swift */; };
 		4516F33F7EB35C2DB81A07B9 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86914B16DF08EDA8A380382F /* Turn.swift */; };
+		543687A9445717FA69632D0A /* GameSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */; };
 		692C663E90E0828B0AA50954 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C95312878359D9576CEE3C /* PlayerTests.swift */; };
+		69EA2B2ADFAFE95FA0204A00 /* TurnManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED837878B135478BEB8310F /* TurnManagementTests.swift */; };
 		6B91316350812D4A0466A249 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFAB3FF3D403320C5C77CB2 /* Game.swift */; };
 		7EDE0C27AE2377C887A98466 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A1A5570E7A562D5FB7EE5 /* Player.swift */; };
 		885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */; };
@@ -18,7 +20,9 @@
 		AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */; };
 		AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1029ADDF2BE0A8F49E7676A /* GameView.swift */; };
 		B7C9E9601AA9842BDD1ECEAF /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9947668616E5E8889DDE2 /* GameViewModelTests.swift */; };
+		C687BEC9886902DE578ABCB7 /* ScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E895275D181F1153ECDA05E7 /* ScoringTests.swift */; };
 		D0EA6EF54BFE5D99C0AC10DE /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5F5672730FD5906D4FFBF /* GameTests.swift */; };
+		D465D0D3D827842BBE865420 /* BDDTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF7576E446707A36E7A37B /* BDDTestCase.swift */; };
 		D6A9DBDEC8DC1B7B0A1439E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282FE08397C8DF77146BDD6A /* Assets.xcassets */; };
 		D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259CD983D628D307348BBF39 /* ScoringEngineTests.swift */; };
 		DD91E1FF0E6E3094FA837F7D /* ScoringCombinationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */; };
@@ -26,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0CFD8F9AB6561ADD8AFD0866 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E500CE4B613EA2A249D538F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C12B087A740DAA1B524DDB25;
+			remoteInfo = FarkleScorekeeper;
+		};
 		B49899F396538ECB043CD672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E500CE4B613EA2A249D538F0 /* Project object */;
@@ -41,10 +52,14 @@
 		259CD983D628D307348BBF39 /* ScoringEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngineTests.swift; sourceTree = "<group>"; };
 		282FE08397C8DF77146BDD6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CFAB3FF3D403320C5C77CB2 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3ED837878B135478BEB8310F /* TurnManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnManagementTests.swift; sourceTree = "<group>"; };
 		4A904A6AF840A78751FF02B2 /* ScoreInputPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreInputPadView.swift; sourceTree = "<group>"; };
+		4CFF7576E446707A36E7A37B /* BDDTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDDTestCase.swift; sourceTree = "<group>"; };
 		55E9947668616E5E8889DDE2 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
+		601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSteps.swift; sourceTree = "<group>"; };
 		6610A8EED5BECAF21F12CD82 /* TurnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnTests.swift; sourceTree = "<group>"; };
 		76C95312878359D9576CEE3C /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		77F4AE8422E17247C65F7994 /* FarkleScorekeeperUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		847808F6895C4BC0F590EDCD /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		86914B16DF08EDA8A380382F /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		8C9A1A5570E7A562D5FB7EE5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -52,11 +67,21 @@
 		D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FarkleScorekeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E895275D181F1153ECDA05E7 /* ScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringTests.swift; sourceTree = "<group>"; };
 		F1029ADDF2BE0A8F49E7676A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarkleScorekeeperApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0026AB2324E1F88B086689B1 /* BDD */ = {
+			isa = PBXGroup;
+			children = (
+				4CFF7576E446707A36E7A37B /* BDDTestCase.swift */,
+				601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */,
+			);
+			path = BDD;
+			sourceTree = "<group>";
+		};
 		08588AC480B03E3CA4B6D079 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,12 +101,42 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		1FD2F14937A1589B76C745C8 /* FarkleScorekeeperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0026AB2324E1F88B086689B1 /* BDD */,
+				75BF32855FCA88ED446E0F7C /* Features */,
+			);
+			path = FarkleScorekeeperUITests;
+			sourceTree = "<group>";
+		};
+		56DB2F768A74C2B947F37E5E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D0D9086063E5608BE4377FF2 /* Models */,
+				9CFEC5D93A4C25A5C7019565 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		725930FE2F3A1EFD8E2F8C5F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B6BD8DE302961B1F45A4BFAE /* Components */,
 				769C8A325677B16AADEA8EB7 /* Game */,
+				B0D533060DA2642001E6F6B8 /* Setup */,
+				820EE52C2674D85AE6256F4D /* Stats */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		75BF32855FCA88ED446E0F7C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				E895275D181F1153ECDA05E7 /* ScoringTests.swift */,
+				3ED837878B135478BEB8310F /* TurnManagementTests.swift */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		762387F2E689D09F9D2CDD75 /* App */ = {
@@ -106,10 +161,25 @@
 		769CB54E02F94AFDDF808CF6 /* FarkleScorekeeperTests */ = {
 			isa = PBXGroup;
 			children = (
+				A57F8ED5FBF2F2C275FA5042 /* Data */,
 				A37730A91247B1A28E1C8F26 /* Domain */,
 				0DCD568F46373068AF59ED0A /* Presentation */,
 			);
 			path = FarkleScorekeeperTests;
+			sourceTree = "<group>";
+		};
+		7C9D5E638D4559CC6ADEFACC /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		820EE52C2674D85AE6256F4D /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 		8C05E3ECD6FA21BC5DD6C1BF /* Resources */ = {
@@ -125,6 +195,7 @@
 			children = (
 				C52CC34349F229A21394B0F4 /* FarkleScorekeeper */,
 				769CB54E02F94AFDDF808CF6 /* FarkleScorekeeperTests */,
+				1FD2F14937A1589B76C745C8 /* FarkleScorekeeperUITests */,
 				D57186564B0AC9DBF62315C5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,9 +203,18 @@
 		942496E4A59D7E122D772107 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DB2BB2584AE6ED476368F860 /* Engine */,
 				08588AC480B03E3CA4B6D079 /* Entities */,
+				7C9D5E638D4559CC6ADEFACC /* UseCases */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		9CFEC5D93A4C25A5C7019565 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		A37730A91247B1A28E1C8F26 /* Domain */ = {
@@ -149,10 +229,32 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		A57F8ED5FBF2F2C275FA5042 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B0D533060DA2642001E6F6B8 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		B6BD8DE302961B1F45A4BFAE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		C52CC34349F229A21394B0F4 /* FarkleScorekeeper */ = {
 			isa = PBXGroup;
 			children = (
 				762387F2E689D09F9D2CDD75 /* App */,
+				56DB2F768A74C2B947F37E5E /* Data */,
 				942496E4A59D7E122D772107 /* Domain */,
 				725930FE2F3A1EFD8E2F8C5F /* Presentation */,
 				8C05E3ECD6FA21BC5DD6C1BF /* Resources */,
@@ -160,18 +262,51 @@
 			path = FarkleScorekeeper;
 			sourceTree = "<group>";
 		};
+		D0D9086063E5608BE4377FF2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D57186564B0AC9DBF62315C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */,
 				D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */,
+				77F4AE8422E17247C65F7994 /* FarkleScorekeeperUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DB2BB2584AE6ED476368F860 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		32F2E0E997C98065C82E76F4 /* FarkleScorekeeperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A55B999AB231DA35CDA7177 /* Build configuration list for PBXNativeTarget "FarkleScorekeeperUITests" */;
+			buildPhases = (
+				CBA0DEC6A0C2CDFB3BF83416 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45F6C12A6A7AE9C495E93959 /* PBXTargetDependency */,
+			);
+			name = FarkleScorekeeperUITests;
+			packageProductDependencies = (
+			);
+			productName = FarkleScorekeeperUITests;
+			productReference = 77F4AE8422E17247C65F7994 /* FarkleScorekeeperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FF4897AA708441BD99A265C /* Build configuration list for PBXNativeTarget "FarkleScorekeeper" */;
@@ -216,6 +351,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					32F2E0E997C98065C82E76F4 = {
+						TestTargetID = C12B087A740DAA1B524DDB25;
+					};
+				};
 			};
 			buildConfigurationList = 4185A5DD1CA7C7E29F539831 /* Build configuration list for PBXProject "FarkleScorekeeper" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -233,6 +373,7 @@
 			targets = (
 				C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */,
 				E35A66185D8EA4DFAC6EA22C /* FarkleScorekeeperTests */,
+				32F2E0E997C98065C82E76F4 /* FarkleScorekeeperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +403,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBA0DEC6A0C2CDFB3BF83416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D465D0D3D827842BBE865420 /* BDDTestCase.swift in Sources */,
+				543687A9445717FA69632D0A /* GameSteps.swift in Sources */,
+				C687BEC9886902DE578ABCB7 /* ScoringTests.swift in Sources */,
+				69EA2B2ADFAFE95FA0204A00 /* TurnManagementTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B77ABF9FD3F8B6030E2EFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +433,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		45F6C12A6A7AE9C495E93959 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */;
+			targetProxy = 0CFD8F9AB6561ADD8AFD0866 /* PBXContainerItemProxy */;
+		};
 		D614DC708D55D4747059426D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C12B087A740DAA1B524DDB25 /* FarkleScorekeeper */;
@@ -349,6 +506,40 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		82797F3E44622CC305ACB458 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeperUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FarkleScorekeeper;
+			};
+			name = Debug;
+		};
+		883402BC9CEA94196B9E28ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikelane.FarkleScorekeeperUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FarkleScorekeeper;
+			};
+			name = Release;
 		};
 		90613AD5D17D06C230EC0190 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -522,6 +713,15 @@
 			buildConfigurations = (
 				35A907806D442665FFB3D2C8 /* Debug */,
 				3064CFCA428FAE6C8BDA6F28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9A55B999AB231DA35CDA7177 /* Build configuration list for PBXNativeTarget "FarkleScorekeeperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82797F3E44622CC305ACB458 /* Debug */,
+				883402BC9CEA94196B9E28ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

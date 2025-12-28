@@ -12,6 +12,7 @@ struct ScoreInputPadView: View {
             actionButtons
         }
         .padding()
+        .id("\(viewModel.diceRemaining)-\(viewModel.turnScore)")  // Force re-render when state changes
     }
 
     private var singleDiceCombinations: some View {
@@ -191,6 +192,7 @@ struct ScoreInputPadView: View {
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
+            .accessibilityIdentifier("farkleButton")
 
             Button {
                 viewModel.bank()
@@ -204,6 +206,7 @@ struct ScoreInputPadView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .disabled(!viewModel.canBank)
+            .accessibilityIdentifier("bankButton")
         }
     }
 }
@@ -212,6 +215,7 @@ struct CombinationButton: View {
     let title: String
     let subtitle: String
     let isEnabled: Bool
+    var accessibilityId: String?
     let action: () -> Void
 
     var body: some View {
@@ -219,6 +223,7 @@ struct CombinationButton: View {
             CombinationButtonLabel(title: title, subtitle: subtitle, isEnabled: isEnabled)
         }
         .disabled(!isEnabled)
+        .accessibilityIdentifier(accessibilityId ?? subtitle)
     }
 }
 

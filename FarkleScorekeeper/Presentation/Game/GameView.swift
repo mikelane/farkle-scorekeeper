@@ -26,6 +26,7 @@ struct GameView: View {
             Text(viewModel.currentPlayerName)
                 .font(.title)
                 .fontWeight(.bold)
+                .accessibilityIdentifier("currentPlayer")
 
             HStack(spacing: 24) {
                 VStack {
@@ -36,6 +37,7 @@ struct GameView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundStyle(.blue)
+                        .accessibilityIdentifier("turnScore")
                 }
 
                 VStack {
@@ -46,6 +48,7 @@ struct GameView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundStyle(viewModel.diceRemaining <= 2 ? .green : .primary)
+                        .accessibilityIdentifier("diceRemaining")
                 }
 
                 VStack {
@@ -55,6 +58,7 @@ struct GameView: View {
                     Text("\(viewModel.currentPlayerScore)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .accessibilityIdentifier("totalScore")
                 }
             }
 

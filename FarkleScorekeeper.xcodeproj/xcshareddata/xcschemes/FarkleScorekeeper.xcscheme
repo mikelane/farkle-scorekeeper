@@ -35,6 +35,20 @@
                ReferencedContainer = "container:FarkleScorekeeper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "32F2E0E997C98065C82E76F4"
+               BuildableName = "FarkleScorekeeperUITests.xctest"
+               BlueprintName = "FarkleScorekeeperUITests"
+               ReferencedContainer = "container:FarkleScorekeeper.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -62,6 +76,17 @@
                BlueprintIdentifier = "E35A66185D8EA4DFAC6EA22C"
                BuildableName = "FarkleScorekeeperTests.xctest"
                BlueprintName = "FarkleScorekeeperTests"
+               ReferencedContainer = "container:FarkleScorekeeper.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "32F2E0E997C98065C82E76F4"
+               BuildableName = "FarkleScorekeeperUITests.xctest"
+               BlueprintName = "FarkleScorekeeperUITests"
                ReferencedContainer = "container:FarkleScorekeeper.xcodeproj">
             </BuildableReference>
          </TestableReference>

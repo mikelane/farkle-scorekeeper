@@ -19,6 +19,10 @@ struct Turn: Sendable {
         diceRemaining -= combination.diceCount
         isFirstRoll = false
         scoringHistory.append(combination)
+
+        if diceRemaining == 0 {
+            hotDice()
+        }
     }
 
     mutating func farkle() {
