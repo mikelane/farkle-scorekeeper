@@ -172,4 +172,50 @@ final class GameViewModelTests: XCTestCase {
 
         XCTAssertNil(viewModel.winnerName)
     }
+
+    // MARK: - Turn Scoring History Tests
+
+    func test_turnScoringHistory_initiallyEmpty() {
+        let viewModel = GameViewModel(playerNames: ["Alice"])
+
+        XCTAssertTrue(viewModel.turnScoringHistory.isEmpty)
+    }
+
+    func test_turnScoringHistory_afterSingleOne_containsSingleOne() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+
+        viewModel.addScore(.singleOne)
+
+        XCTAssertEqual(viewModel.turnScoringHistory.count, 1)
+        XCTAssertEqual(viewModel.turnScoringHistory.first, .singleOne)
+    }
+
+    func test_turnScoringHistory_afterMultipleCombinations_containsAllInOrder() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+
+        viewModel.addScore(.singleOne)
+        viewModel.addScore(.singleFive)
+
+        XCTAssertEqual(viewModel.turnScoringHistory.count, 2)
+        XCTAssertEqual(viewModel.turnScoringHistory[0], .singleOne)
+        XCTAssertEqual(viewModel.turnScoringHistory[1], .singleFive)
+    }
+
+    func test_turnScoringHistory_afterFarkle_clearsForNextPlayer() {
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+        viewModel.addScore(.singleOne)
+
+        viewModel.farkle()
+
+        XCTAssertTrue(viewModel.turnScoringHistory.isEmpty)
+    }
+
+    func test_turnScoringHistory_afterBank_clearsForNextPlayer() {
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+        viewModel.addScore(.fourOfAKind)
+
+        viewModel.bank()
+
+        XCTAssertTrue(viewModel.turnScoringHistory.isEmpty)
+    }
 }

@@ -28,6 +28,10 @@ final class GameViewModel {
         game.currentTurn.mustRoll
     }
 
+    var turnScoringHistory: [ScoringCombination] {
+        game.currentTurn.scoringHistory
+    }
+
     var isGameOver: Bool {
         game.isGameOver
     }
