@@ -12,6 +12,7 @@
 		04953B68D7F90A866A24D5D8 /* ScoreInputPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904A6AF840A78751FF02B2 /* ScoreInputPadView.swift */; };
 		1274B6ABFBE7D7A16D62ED8D /* PlayerStatisticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79AD252AB8E2FF0A7BF0B3 /* PlayerStatisticsTests.swift */; };
 		152022153865E612D5ECE2AF /* TurnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610A8EED5BECAF21F12CD82 /* TurnTests.swift */; };
+		43872B7F3744ACD49CF939B5 /* StatisticsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCDCFCA3D6178567E264579 /* StatisticsRepositoryTests.swift */; };
 		4516F33F7EB35C2DB81A07B9 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86914B16DF08EDA8A380382F /* Turn.swift */; };
 		4AE540B6F1225D27284B3B55 /* ShareResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4163E863B427F0513920E79 /* ShareResultsView.swift */; };
 		543687A9445717FA69632D0A /* GameSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */; };
@@ -26,6 +27,7 @@
 		8D8F33BD104F4979D6C608BE /* HouseRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888193B2951F5E1F6569C52F /* HouseRules.swift */; };
 		981206CB9ABAB82D68E91668 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847808F6895C4BC0F590EDCD /* GameViewModel.swift */; };
 		99803217770BE8998AAD15EE /* ThemeManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789101188F925843DC8482B4 /* ThemeManagerTests.swift */; };
+		A25798131BA44FE3D88FB681 /* StatisticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB77D23C898E204F543939B /* StatisticsRepository.swift */; };
 		AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */; };
 		AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1029ADDF2BE0A8F49E7676A /* GameView.swift */; };
 		B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663647530A697BD5C80326F3 /* ThemeManager.swift */; };
@@ -77,6 +79,7 @@
 		601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSteps.swift; sourceTree = "<group>"; };
 		6610A8EED5BECAF21F12CD82 /* TurnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnTests.swift; sourceTree = "<group>"; };
 		663647530A697BD5C80326F3 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		6DB77D23C898E204F543939B /* StatisticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRepository.swift; sourceTree = "<group>"; };
 		76C95312878359D9576CEE3C /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		77F4AE8422E17247C65F7994 /* FarkleScorekeeperUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		789101188F925843DC8482B4 /* ThemeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManagerTests.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FarkleScorekeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E895275D181F1153ECDA05E7 /* ScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringTests.swift; sourceTree = "<group>"; };
+		EBCDCFCA3D6178567E264579 /* StatisticsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRepositoryTests.swift; sourceTree = "<group>"; };
 		F1029ADDF2BE0A8F49E7676A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarkleScorekeeperApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				82307F05E5FA6289DE28CA99 /* HouseRulesRepositoryTests.swift */,
+				EBCDCFCA3D6178567E264579 /* StatisticsRepositoryTests.swift */,
 				789101188F925843DC8482B4 /* ThemeManagerTests.swift */,
 			);
 			path = App;
@@ -201,6 +206,7 @@
 				97E7F19EDAC7D1905A3BBA2C /* AppColors.swift */,
 				D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */,
 				F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */,
+				6DB77D23C898E204F543939B /* StatisticsRepository.swift */,
 				663647530A697BD5C80326F3 /* ThemeManager.swift */,
 			);
 			path = App;
@@ -421,6 +427,7 @@
 				692C663E90E0828B0AA50954 /* PlayerTests.swift in Sources */,
 				DD91E1FF0E6E3094FA837F7D /* ScoringCombinationTests.swift in Sources */,
 				D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */,
+				43872B7F3744ACD49CF939B5 /* StatisticsRepositoryTests.swift in Sources */,
 				99803217770BE8998AAD15EE /* ThemeManagerTests.swift in Sources */,
 				152022153865E612D5ECE2AF /* TurnTests.swift in Sources */,
 			);
@@ -457,6 +464,7 @@
 				04953B68D7F90A866A24D5D8 /* ScoreInputPadView.swift in Sources */,
 				AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */,
 				4AE540B6F1225D27284B3B55 /* ShareResultsView.swift in Sources */,
+				A25798131BA44FE3D88FB681 /* StatisticsRepository.swift in Sources */,
 				B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */,
 				4516F33F7EB35C2DB81A07B9 /* Turn.swift in Sources */,
 			);
