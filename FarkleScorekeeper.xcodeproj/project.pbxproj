@@ -30,6 +30,7 @@
 		76FE62E007F7D12208D0DF29 /* TurnHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119440FEB5EF7E8182C593F /* TurnHistoryView.swift */; };
 		7EDE0C27AE2377C887A98466 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A1A5570E7A562D5FB7EE5 /* Player.swift */; };
 		7FFE95DDFA3D307E3E686984 /* GameResultsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CADD1CF07415BD96060A5E /* GameResultsFormatter.swift */; };
+		800857AB149F966A0B2D5EDB /* FinalRoundBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DED41DE0E17DAAC9C6E44E /* FinalRoundBannerView.swift */; };
 		885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */; };
 		8D8F33BD104F4979D6C608BE /* HouseRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888193B2951F5E1F6569C52F /* HouseRules.swift */; };
 		981206CB9ABAB82D68E91668 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847808F6895C4BC0F590EDCD /* GameViewModel.swift */; };
@@ -79,6 +80,7 @@
 		282FE08397C8DF77146BDD6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A79AD252AB8E2FF0A7BF0B3 /* PlayerStatisticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatisticsTests.swift; sourceTree = "<group>"; };
 		2AA835FA32E5939F682BE517 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
+		38DED41DE0E17DAAC9C6E44E /* FinalRoundBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalRoundBannerView.swift; sourceTree = "<group>"; };
 		38F95C0899EA6875451E97BD /* PlayerStatisticsRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatisticsRecord.swift; sourceTree = "<group>"; };
 		3CFAB3FF3D403320C5C77CB2 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3ED837878B135478BEB8310F /* TurnManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnManagementTests.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		769C8A325677B16AADEA8EB7 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				38DED41DE0E17DAAC9C6E44E /* FinalRoundBannerView.swift */,
 				F1029ADDF2BE0A8F49E7676A /* GameView.swift */,
 				847808F6895C4BC0F590EDCD /* GameViewModel.swift */,
 				4A904A6AF840A78751FF02B2 /* ScoreInputPadView.swift */,
@@ -495,6 +498,7 @@
 				645DC559640558728B979A24 /* AppearanceSettingsView.swift in Sources */,
 				885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */,
 				E02A5C4D285F9BE2BD02564C /* FarkleScorekeeperApp.swift in Sources */,
+				800857AB149F966A0B2D5EDB /* FinalRoundBannerView.swift in Sources */,
 				6B91316350812D4A0466A249 /* Game.swift in Sources */,
 				7FFE95DDFA3D307E3E686984 /* GameResultsFormatter.swift in Sources */,
 				AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */,

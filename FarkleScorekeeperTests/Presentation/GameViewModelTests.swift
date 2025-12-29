@@ -297,5 +297,132 @@ final class GameViewModelTests: XCTestCase {
         viewModel.undo()
 
         XCTAssertTrue(viewModel.isCombinationAvailable(.sixDiceFarkle))
+    // MARK: - Final Round UI Tests
+
+    func test_isInFinalRound_initiallyFalse() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertFalse(viewModel.isInFinalRound)
+    }
+
+    func test_finalRoundTriggerPlayerName_initiallyNil() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertNil(viewModel.finalRoundTriggerPlayerName)
+    }
+
+    func test_isInFinalRound_afterPlayerReachesTarget_isTrue() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points
+
+        viewModel.bank()
+
+        XCTAssertTrue(viewModel.isInFinalRound)
+    }
+
+    func test_finalRoundTriggerPlayerName_afterPlayerReachesTarget_returnsPlayerName() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points
+
+        viewModel.bank()
+
+        XCTAssertEqual(viewModel.finalRoundTriggerPlayerName, "Alice")
+    }
+
+    func test_targetScore_returnsHouseRulesTarget() {
+        let houseRules = HouseRules(targetScore: 7500, finalRoundEnabled: true)
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+
+        XCTAssertEqual(viewModel.targetScore, 7500)
+    }
+
+    func test_currentPlayerFinalRoundStatus_beforeFinalRound_isNormal() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertEqual(viewModel.currentPlayerFinalRoundStatus, .normal)
+    }
+
+    func test_currentPlayerFinalRoundStatus_forChallenger_isChallenger() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points - Alice triggers final round
+        viewModel.bank() // Alice banks, now Bob's turn (challenger)
+
+        XCTAssertEqual(viewModel.currentPlayerFinalRoundStatus, .challenger)
+    }
+
+    func test_currentPlayerFinalRoundStatus_forSecondChallenger_isChallenger() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob", "Charlie"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points - Alice triggers final round
+        viewModel.bank() // Alice banks, now Bob's turn (challenger)
+        viewModel.farkle() // Bob farkles, now Charlie's turn (also challenger)
+
+        XCTAssertEqual(viewModel.currentPlayerFinalRoundStatus, .challenger)
+    }
+
+    func test_scoreToBeat_beforeFinalRound_isNil() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertNil(viewModel.scoreToBeat)
+    }
+
+    func test_scoreToBeat_inFinalRound_returnsTriggerPlayerScore() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points - Alice triggers final round
+        viewModel.bank() // Alice banks with 2000, now Bob's turn
+
+        XCTAssertEqual(viewModel.scoreToBeat, 2000)
+    }
+
+    func test_playersInfo_returnsAllPlayers() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob", "Charlie"])
+
+        XCTAssertEqual(viewModel.playersInfo.count, 3)
+        XCTAssertEqual(viewModel.playersInfo[0].name, "Alice")
+        XCTAssertEqual(viewModel.playersInfo[1].name, "Bob")
+        XCTAssertEqual(viewModel.playersInfo[2].name, "Charlie")
+    }
+
+    func test_playersInfo_showsCorrectScores() {
+        let houseRules = HouseRules(targetScore: 10000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points
+        viewModel.bank() // Alice has 2000
+
+        XCTAssertEqual(viewModel.playersInfo[0].score, 2000)
+        XCTAssertEqual(viewModel.playersInfo[1].score, 0)
+    }
+
+    func test_playersInfo_beforeFinalRound_allStatusNormal() {
+        let viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertEqual(viewModel.playersInfo[0].status, .normal)
+        XCTAssertEqual(viewModel.playersInfo[1].status, .normal)
+    }
+
+    func test_playersInfo_inFinalRound_defenderShowsDefending() {
+        let houseRules = HouseRules(targetScore: 2000, finalRoundEnabled: true)
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"], houseRules: houseRules)
+        viewModel.addScore(.fourOfAKind) // 2000 points - Alice triggers final round
+        viewModel.bank() // Alice banks, now Bob's turn
+
+        XCTAssertEqual(viewModel.playersInfo[0].status, .defending)
+        XCTAssertEqual(viewModel.playersInfo[1].status, .challenger)
+    }
+
+    func test_playersInfo_showsCurrentPlayer() {
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+
+        XCTAssertTrue(viewModel.playersInfo[0].isCurrentPlayer)
+        XCTAssertFalse(viewModel.playersInfo[1].isCurrentPlayer)
+
+        viewModel.farkle() // Advance to Bob
+
+        XCTAssertFalse(viewModel.playersInfo[0].isCurrentPlayer)
+        XCTAssertTrue(viewModel.playersInfo[1].isCurrentPlayer)
     }
 }

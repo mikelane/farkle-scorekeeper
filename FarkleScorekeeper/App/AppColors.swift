@@ -76,4 +76,28 @@ enum AppColors {
             Color(.secondarySystemBackground)
         }
     }
+
+    // MARK: - Final Round Colors
+
+    enum FinalRound {
+        static var bannerBackground: Color {
+            Color.orange.opacity(0.9)
+        }
+
+        static var bannerText: Color {
+            Color.white
+        }
+
+        static var defendingBadge: Color {
+            Color.blue
+        }
+
+        static var challengerBadge: Color {
+            Color.orange
+        }
+
+        static var scoreToBeat: Color {
+            Color.red
+        }
+    }
 }

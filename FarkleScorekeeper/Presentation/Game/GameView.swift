@@ -10,6 +10,14 @@ struct GameView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
+                if viewModel.isInFinalRound,
+                   let triggerName = viewModel.finalRoundTriggerPlayerName,
+                   let score = viewModel.scoreToBeat {
+                    FinalRoundBannerView(
+                        triggerPlayerName: triggerName,
+                        scoreToBeat: score
+                    )
+                }
                 turnHeader
                 TurnHistoryView(scoringHistory: viewModel.turnScoringHistory)
                     .padding(.horizontal)
@@ -25,6 +33,14 @@ struct GameView: View {
 
     private var turnHeader: some View {
         VStack(spacing: 8) {
+            if viewModel.currentPlayerFinalRoundStatus == .challenger {
+                Text("Last Chance!")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundStyle(AppColors.FinalRound.scoreToBeat)
+                    .accessibilityIdentifier("lastChanceIndicator")
+            }
+
             Text(viewModel.currentPlayerName)
                 .font(.title)
                 .fontWeight(.bold)
