@@ -218,4 +218,84 @@ final class GameViewModelTests: XCTestCase {
 
         XCTAssertTrue(viewModel.turnScoringHistory.isEmpty)
     }
+
+    // MARK: - Undo Tests
+
+    func test_canUndo_atStartOfTurn_isFalse() {
+        let viewModel = GameViewModel(playerNames: ["Alice"])
+
+        XCTAssertFalse(viewModel.canUndo)
+    }
+
+    func test_canUndo_afterAddingScore_isTrue() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+
+        XCTAssertTrue(viewModel.canUndo)
+    }
+
+    func test_canUndo_afterFarkle_isFalse() {
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+        viewModel.addScore(.singleOne)
+        viewModel.farkle()
+
+        XCTAssertFalse(viewModel.canUndo)
+    }
+
+    func test_canUndo_afterBanking_isFalse() {
+        var viewModel = GameViewModel(playerNames: ["Alice", "Bob"])
+        viewModel.addScore(.fourOfAKind)
+        viewModel.bank()
+
+        XCTAssertFalse(viewModel.canUndo)
+    }
+
+    func test_undo_restoresTurnScore() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+
+        viewModel.undo()
+
+        XCTAssertEqual(viewModel.turnScore, 0)
+    }
+
+    func test_undo_restoresDiceRemaining() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+
+        viewModel.undo()
+
+        XCTAssertEqual(viewModel.diceRemaining, 6)
+    }
+
+    func test_undo_removesFromScoringHistory() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+
+        viewModel.undo()
+
+        XCTAssertTrue(viewModel.turnScoringHistory.isEmpty)
+    }
+
+    func test_undo_afterMultipleScores_restoresLastState() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+        viewModel.addScore(.singleFive)
+
+        viewModel.undo()
+
+        XCTAssertEqual(viewModel.turnScore, 100)
+        XCTAssertEqual(viewModel.diceRemaining, 5)
+    }
+
+    func test_undo_restoresSixDiceFarkleAvailability() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.singleOne)
+
+        XCTAssertFalse(viewModel.isCombinationAvailable(.sixDiceFarkle))
+
+        viewModel.undo()
+
+        XCTAssertTrue(viewModel.isCombinationAvailable(.sixDiceFarkle))
+    }
 }

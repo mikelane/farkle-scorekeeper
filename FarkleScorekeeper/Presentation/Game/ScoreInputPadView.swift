@@ -182,6 +182,20 @@ struct ScoreInputPadView: View {
     private var actionButtons: some View {
         HStack(spacing: 16) {
             Button {
+                viewModel.undo()
+            } label: {
+                Text("UNDO")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(viewModel.canUndo ? AppColors.Button.undoEnabledBackground : AppColors.Button.undoDisabledBackground)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .disabled(!viewModel.canUndo)
+            .accessibilityIdentifier("undoButton")
+
+            Button {
                 viewModel.farkle()
             } label: {
                 Text("FARKLE!")

@@ -31,6 +31,14 @@ enum AppColors {
         static var bankDisabledBackground: Color {
             Color.gray
         }
+
+        static var undoEnabledBackground: Color {
+            Color.orange
+        }
+
+        static var undoDisabledBackground: Color {
+            Color.gray
+        }
     }
 
     // MARK: - Score Colors

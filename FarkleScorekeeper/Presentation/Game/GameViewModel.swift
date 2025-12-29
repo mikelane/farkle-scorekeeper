@@ -32,6 +32,10 @@ final class GameViewModel {
         game.currentTurn.scoringHistory
     }
 
+    var canUndo: Bool {
+        game.currentTurn.canUndo
+    }
+
     var isGameOver: Bool {
         game.isGameOver
     }
@@ -55,6 +59,10 @@ final class GameViewModel {
 
     func farkle() {
         game.farkle()
+    }
+
+    func undo() {
+        game.undoLastScore()
     }
 
     func isCombinationAvailable(_ combination: ScoringCombination) -> Bool {
