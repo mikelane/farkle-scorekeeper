@@ -7,9 +7,14 @@ extension BDDTestCase {
     // MARK: - Given Steps (Setup)
 
     /// Launches the app with a new game
-    /// Currently uses hardcoded players: "Player 1" and "Player 2"
+    /// Taps through PlayerSetupView with default names
     func launchGame() {
         app.launch()
+
+        // Tap Start Game on the setup screen (uses default names)
+        let startButton = app.buttons["startGameButton"]
+        XCTAssertTrue(startButton.waitForExistence(timeout: 5), "Start Game button should appear")
+        startButton.tap()
 
         // Wait for the game view to appear
         let currentPlayer = app.staticTexts["currentPlayer"]
