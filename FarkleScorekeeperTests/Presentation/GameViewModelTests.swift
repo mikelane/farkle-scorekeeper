@@ -297,6 +297,8 @@ final class GameViewModelTests: XCTestCase {
         viewModel.undo()
 
         XCTAssertTrue(viewModel.isCombinationAvailable(.sixDiceFarkle))
+    }
+
     // MARK: - Final Round UI Tests
 
     func test_isInFinalRound_initiallyFalse() {

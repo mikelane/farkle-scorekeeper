@@ -675,4 +675,182 @@ final class GameTests: XCTestCase {
         // Alice should get a turn, but Bob (eliminated) should be skipped
         XCTAssertEqual(game.currentPlayer.name, "Alice", "Should be Alice's turn, Bob skipped")
     }
+
+    // MARK: - Issue #54: Two-Player Defend Your Win Semantics
+
+    func test_defendYourWin_twoPlayer_challengerFarkles_defenderWins() {
+        // Test Case 1: P1 triggers → P2 farkles → P1 wins
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers final round with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+        XCTAssertEqual(game.currentDefenderIndex, 0)
+        XCTAssertEqual(game.currentPlayer.name, "Bob")
+
+        // Bob farkles
+        game.farkle()
+
+        XCTAssertTrue(game.isGameOver, "Game should end when challenger farkles")
+        XCTAssertEqual(game.winner?.name, "Alice", "Defender Alice should win")
+    }
+
+    func test_defendYourWin_twoPlayer_challengerOvertakes_defenderFarkles_challengerWins() {
+        // Test Case 2: P1 triggers → P2 passes P1 → P1 farkles → P2 wins
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers final round with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 0)
+
+        // Bob overtakes with 2100
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob should now be defender")
+        XCTAssertFalse(game.isGameOver, "Game should NOT end - Alice gets a chance")
+        XCTAssertEqual(game.currentPlayer.name, "Alice", "Alice should get a turn to respond")
+
+        // Alice farkles
+        game.farkle()
+
+        XCTAssertTrue(game.isGameOver, "Game should end when Alice farkles")
+        XCTAssertEqual(game.winner?.name, "Bob", "Bob should win")
+    }
+
+    func test_defendYourWin_twoPlayer_backAndForth_secondChallengerFarkles() {
+        // Test Case 3: P1 triggers → P2 passes P1 → P1 passes P2 → P2 farkles → P1 wins
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob overtakes with 2100
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob is defender")
+        XCTAssertEqual(game.currentPlayer.name, "Alice")
+
+        // Alice overtakes Bob with 5000 (her total is now 1150 + 3000 = 4150, but Bob has 2100)
+        // Let's make Alice pass Bob: she needs >2100 total, so >950 this turn
+        // Actually let's give her 3000 points to clearly overtake
+        game.addScore(.fiveOfAKind)
+        _ = game.bankPoints()
+
+        // Alice now has 1150 + 3000 = 4150, Bob has 2100
+        XCTAssertEqual(game.currentDefenderIndex, 0, "Alice should now be defender again")
+        XCTAssertFalse(game.isGameOver, "Game continues - Bob gets a chance")
+        XCTAssertEqual(game.currentPlayer.name, "Bob")
+
+        // Bob farkles
+        game.farkle()
+
+        XCTAssertTrue(game.isGameOver, "Game should end when Bob farkles")
+        XCTAssertEqual(game.winner?.name, "Alice", "Alice should win")
+    }
+
+    func test_defendYourWin_twoPlayer_multipleOvertakes_originalChallengerFarkles() {
+        // Test Case 4: P1 triggers → P2 passes P1 → P1 passes P2 → P2 passes P1 → P1 farkles → P2 wins
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        // Bob overtakes with 2100 (total: 2100)
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1)
+
+        // Alice overtakes with 3000 (total: 4150)
+        game.addScore(.fiveOfAKind)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 0)
+
+        // Bob overtakes with 3000 (total: 5100)
+        game.addScore(.fiveOfAKind)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob is defender again")
+        XCTAssertEqual(game.currentPlayer.name, "Alice")
+
+        // Alice farkles
+        game.farkle()
+
+        XCTAssertTrue(game.isGameOver, "Game should end when Alice farkles")
+        XCTAssertEqual(game.winner?.name, "Bob", "Bob should win")
+    }
+
+    func test_defendYourWin_twoPlayer_challengerBanksButDoesntPass_defenderWins() {
+        // Test Case 5: P1 triggers → P2 banks but doesn't pass P1 → P1 wins
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertEqual(game.currentDefenderIndex, 0)
+
+        // Bob scores 450 (doesn't beat Alice's 1150)
+        game.addScore(.threeOfAKind(dieValue: 3))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isGameOver, "Game should end - Bob failed to overtake")
+        XCTAssertEqual(game.winner?.name, "Alice", "Alice should win as defender")
+    }
+
+    func test_defendYourWin_gameDoesNotEndImmediatelyWhenChallengerOvertakes() {
+        // Specific regression test for Issue #54 bug
+        // Bug: Game ended immediately when P2 overtook P1, instead of giving P1 a chance
+        let rules = HouseRules(targetScore: 1000, finalRoundEnabled: true, defendYourWin: true)
+        var game = Game(playerNames: ["Alice", "Bob"], houseRules: rules)
+
+        // Alice triggers with 1150
+        game.addScore(.threeOfAKind(dieValue: 1))
+        game.addScore(.singleOne)
+        game.addScore(.singleFive)
+        _ = game.bankPoints()
+
+        XCTAssertTrue(game.isInFinalRound)
+        XCTAssertEqual(game.currentDefenderIndex, 0, "Alice is defender")
+
+        // Bob overtakes with 2100
+        game.addScore(.fourOfAKind)
+        game.addScore(.singleOne)
+        _ = game.bankPoints()
+
+        // CRITICAL: This is the bug scenario - game should NOT end here
+        XCTAssertFalse(game.isGameOver, "BUG CHECK: Game must NOT end when challenger overtakes")
+        XCTAssertNil(game.winner, "BUG CHECK: No winner yet - defender must get a response turn")
+        XCTAssertEqual(game.currentDefenderIndex, 1, "Bob is new defender")
+        XCTAssertEqual(game.currentPlayer.name, "Alice", "Alice must get a turn to respond")
+    }
 }
