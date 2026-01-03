@@ -23,12 +23,20 @@ struct PlayerSetupView: View {
                                 Text("Choose Color")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
-                                PlayerColorPickerView(selectedColor: $viewModel.playerColors[index])
+                                PlayerColorPickerView(
+                                    selectedColor: viewModel.playerColors[index]
+                                ) { color in
+                                    viewModel.setPlayerColor(at: index, to: color)
+                                }
 
                                 Text("Choose Icon")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
-                                PlayerIconPickerView(selectedIcon: $viewModel.playerIcons[index])
+                                PlayerIconPickerView(
+                                    selectedIcon: viewModel.playerIcons[index]
+                                ) { icon in
+                                    viewModel.setPlayerIcon(at: index, to: icon)
+                                }
                             }
                             .padding(.vertical, 4)
                         }

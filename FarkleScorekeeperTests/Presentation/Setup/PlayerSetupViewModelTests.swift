@@ -237,6 +237,23 @@ final class PlayerSetupViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.playerColors.count, 2)
     }
 
+    func test_setPlayerColor_updatesColorAtIndex() {
+        let viewModel = PlayerSetupViewModel()
+
+        viewModel.setPlayerColor(at: 0, to: .purple)
+
+        XCTAssertEqual(viewModel.playerColors[0], .purple)
+    }
+
+    func test_setPlayerColor_preservesOtherColors() {
+        let viewModel = PlayerSetupViewModel()
+        let originalSecondColor = viewModel.playerColors[1]
+
+        viewModel.setPlayerColor(at: 0, to: .purple)
+
+        XCTAssertEqual(viewModel.playerColors[1], originalSecondColor)
+    }
+
     // MARK: - Icon Selection Tests
 
     func test_init_playerIconsHasCorrectCount() {
@@ -270,6 +287,23 @@ final class PlayerSetupViewModelTests: XCTestCase {
         viewModel.playerCount = 2
 
         XCTAssertEqual(viewModel.playerIcons.count, 2)
+    }
+
+    func test_setPlayerIcon_updatesIconAtIndex() {
+        let viewModel = PlayerSetupViewModel()
+
+        viewModel.setPlayerIcon(at: 0, to: "rocket")
+
+        XCTAssertEqual(viewModel.playerIcons[0], "rocket")
+    }
+
+    func test_setPlayerIcon_preservesOtherIcons() {
+        let viewModel = PlayerSetupViewModel()
+        let originalSecondIcon = viewModel.playerIcons[1]
+
+        viewModel.setPlayerIcon(at: 0, to: "rocket")
+
+        XCTAssertEqual(viewModel.playerIcons[1], originalSecondIcon)
     }
 
     // MARK: - Player Config Tests

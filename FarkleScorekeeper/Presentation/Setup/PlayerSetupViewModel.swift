@@ -64,6 +64,16 @@ final class PlayerSetupViewModel {
         recentNamesRepository.save(namesToSave)
     }
 
+    func setPlayerColor(at index: Int, to color: PlayerColor) {
+        guard index >= 0, index < playerColors.count else { return }
+        playerColors[index] = color
+    }
+
+    func setPlayerIcon(at index: Int, to icon: String) {
+        guard index >= 0, index < playerIcons.count else { return }
+        playerIcons[index] = icon
+    }
+
     private func adjustPlayerData() {
         adjustPlayerNames()
         adjustPlayerColors()
