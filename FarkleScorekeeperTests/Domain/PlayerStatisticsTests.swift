@@ -217,4 +217,247 @@ final class PlayerStatisticsTests: XCTestCase {
 
         XCTAssertNotEqual(stats1.id, stats2.id)
     }
+
+    // MARK: - Fun Metrics Default Values
+
+    func test_init_defaultFarkleCountIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.farkleCount, 0)
+    }
+
+    func test_init_defaultHotDiceCountIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.hotDiceCount, 0)
+    }
+
+    func test_init_defaultHighestTurnScoreIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.highestTurnScore, 0)
+    }
+
+    func test_init_defaultInstantWinsIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.instantWins, 0)
+    }
+
+    func test_init_defaultSixOfAKindCountIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.sixOfAKindCount, 0)
+    }
+
+    // MARK: - Streak Default Values
+
+    func test_init_defaultCurrentWinStreakIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.currentWinStreak, 0)
+    }
+
+    func test_init_defaultBestWinStreakIsZero() {
+        let stats = PlayerStatistics(playerName: "Alice")
+
+        XCTAssertEqual(stats.bestWinStreak, 0)
+    }
+
+    // MARK: - Record Farkle
+
+    func test_recordFarkle_incrementsFarkleCount() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordFarkle()
+
+        XCTAssertEqual(stats.farkleCount, 1)
+    }
+
+    func test_recordFarkle_accumulatesFarkleCount() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordFarkle()
+        stats.recordFarkle()
+        stats.recordFarkle()
+
+        XCTAssertEqual(stats.farkleCount, 3)
+    }
+
+    // MARK: - Record Hot Dice
+
+    func test_recordHotDice_incrementsHotDiceCount() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordHotDice()
+
+        XCTAssertEqual(stats.hotDiceCount, 1)
+    }
+
+    func test_recordHotDice_accumulatesHotDiceCount() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordHotDice()
+        stats.recordHotDice()
+        stats.recordHotDice()
+
+        XCTAssertEqual(stats.hotDiceCount, 3)
+    }
+
+    // MARK: - Record Turn Completion
+
+    func test_recordTurnCompletion_updatesHighestTurnScore_whenNewHighScore() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordTurnCompletion(turnScore: 4500)
+
+        XCTAssertEqual(stats.highestTurnScore, 4500)
+    }
+
+    func test_recordTurnCompletion_keepsHighestTurnScore_whenTurnScoreIsLower() {
+        var stats = PlayerStatistics(playerName: "Alice")
+        stats.recordTurnCompletion(turnScore: 4500)
+
+        stats.recordTurnCompletion(turnScore: 2000)
+
+        XCTAssertEqual(stats.highestTurnScore, 4500)
+    }
+
+    // MARK: - Record Scoring Combination
+
+    func test_recordScoringCombination_incrementsSixOfAKindCount_forSixOfAKind() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.sixOfAKind)
+
+        XCTAssertEqual(stats.sixOfAKindCount, 1)
+    }
+
+    func test_recordScoringCombination_accumulatesSixOfAKindCount() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.sixOfAKind)
+        stats.recordScoringCombination(.sixOfAKind)
+        stats.recordScoringCombination(.sixOfAKind)
+
+        XCTAssertEqual(stats.sixOfAKindCount, 3)
+    }
+
+    func test_recordScoringCombination_incrementsInstantWins_forSixOnes() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.sixOnes)
+
+        XCTAssertEqual(stats.instantWins, 1)
+    }
+
+    func test_recordScoringCombination_accumulatesInstantWins() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.sixOnes)
+        stats.recordScoringCombination(.sixOnes)
+
+        XCTAssertEqual(stats.instantWins, 2)
+    }
+
+    func test_recordScoringCombination_doesNotIncrementSixOfAKindCount_forOtherCombinations() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.singleOne)
+        stats.recordScoringCombination(.threeOfAKind(dieValue: 3))
+        stats.recordScoringCombination(.fiveOfAKind)
+
+        XCTAssertEqual(stats.sixOfAKindCount, 0)
+    }
+
+    func test_recordScoringCombination_doesNotIncrementInstantWins_forOtherCombinations() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordScoringCombination(.singleOne)
+        stats.recordScoringCombination(.sixOfAKind)
+        stats.recordScoringCombination(.largeStraight)
+
+        XCTAssertEqual(stats.instantWins, 0)
+    }
+
+    // MARK: - Streak Tracking
+
+    func test_recordGameResult_incrementsCurrentWinStreak_whenWon() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordGameResult(score: 10000, didWin: true)
+
+        XCTAssertEqual(stats.currentWinStreak, 1)
+    }
+
+    func test_recordGameResult_accumulatesCurrentWinStreak_whenConsecutiveWins() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+        stats.recordGameResult(score: 13000, didWin: true)
+
+        XCTAssertEqual(stats.currentWinStreak, 4)
+    }
+
+    func test_recordGameResult_resetsCurrentWinStreak_whenLost() {
+        var stats = PlayerStatistics(playerName: "Alice")
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+
+        stats.recordGameResult(score: 8000, didWin: false)
+
+        XCTAssertEqual(stats.currentWinStreak, 0)
+    }
+
+    func test_recordGameResult_updatesBestWinStreak_whenCurrentExceedsBest() {
+        var stats = PlayerStatistics(playerName: "Alice")
+
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+
+        XCTAssertEqual(stats.bestWinStreak, 3)
+    }
+
+    func test_recordGameResult_keepsBestWinStreak_whenCurrentIsLower() {
+        var stats = PlayerStatistics(playerName: "Alice")
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+        stats.recordGameResult(score: 8000, didWin: false)
+
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+
+        XCTAssertEqual(stats.bestWinStreak, 3)
+        XCTAssertEqual(stats.currentWinStreak, 2)
+    }
+
+    func test_recordGameResult_bestWinStreakUnchanged_whenLosing() {
+        var stats = PlayerStatistics(playerName: "Alice")
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+
+        stats.recordGameResult(score: 8000, didWin: false)
+
+        XCTAssertEqual(stats.bestWinStreak, 3)
+    }
+
+    func test_recordGameResult_bestWinStreak_updatesAfterExceedingPreviousBest() {
+        var stats = PlayerStatistics(playerName: "Alice")
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 8000, didWin: false)
+
+        stats.recordGameResult(score: 10000, didWin: true)
+        stats.recordGameResult(score: 11000, didWin: true)
+        stats.recordGameResult(score: 12000, didWin: true)
+        stats.recordGameResult(score: 13000, didWin: true)
+
+        XCTAssertEqual(stats.bestWinStreak, 4)
+    }
 }
