@@ -30,6 +30,7 @@ struct PlayerIconPickerView: View {
                             }
                         }
                 }
+                .buttonStyle(.borderless)
                 .accessibilityLabel(iconName)
                 .accessibilityAddTraits(selectedIcon == iconName ? .isSelected : [])
             }
