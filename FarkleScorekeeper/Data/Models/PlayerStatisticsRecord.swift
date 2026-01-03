@@ -1,8 +1,8 @@
 import Foundation
-import SwiftData
+@preconcurrency import SwiftData
 
 @Model
-final class PlayerStatisticsRecord: Sendable {
+final class PlayerStatisticsRecord {
     var id: UUID
     @Attribute(.unique) var playerName: String
     var gamesPlayed: Int
