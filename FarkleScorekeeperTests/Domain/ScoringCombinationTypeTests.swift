@@ -153,21 +153,4 @@ final class ScoringCombinationTypeTests: XCTestCase {
         XCTAssertEqual(ScoringCombinationType.sixDiceFarkle.defaultPoints, 500)
     }
 
-    // MARK: - supportsCustomPoints Tests
-
-    func test_singleOne_supportsCustomPoints() {
-        XCTAssertTrue(ScoringCombinationType.singleOne.supportsCustomPoints)
-    }
-
-    func test_threeOfAKind_doesNotSupportCustomPoints() {
-        XCTAssertFalse(ScoringCombinationType.threeOfAKind.supportsCustomPoints)
-    }
-
-    func test_sixOnes_doesNotSupportCustomPoints() {
-        XCTAssertFalse(ScoringCombinationType.sixOnes.supportsCustomPoints)
-    }
-
-    func test_fullHouse_doesNotSupportCustomPoints() {
-        XCTAssertFalse(ScoringCombinationType.fullHouse.supportsCustomPoints)
-    }
 }

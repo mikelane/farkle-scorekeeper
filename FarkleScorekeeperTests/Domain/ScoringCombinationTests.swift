@@ -414,4 +414,20 @@ final class ScoringCombinationTests: XCTestCase {
 
         XCTAssertEqual(combination.points(using: config), 1200)
     }
+
+    func test_fullHouseWithFours_with50xMultiplier_returns450Points() {
+        let combination = ScoringCombination.fullHouse(tripletValue: 4)
+        var config = ScoringConfig.standard
+        config.threeOfAKindMultiplier = 50
+
+        XCTAssertEqual(combination.points(using: config), 450) // 4 * 50 + 250
+    }
+
+    func test_fullHouseWithOnes_with50xMultiplier_stillReturns1250Points() {
+        let combination = ScoringCombination.fullHouse(tripletValue: 1)
+        var config = ScoringConfig.standard
+        config.threeOfAKindMultiplier = 50
+
+        XCTAssertEqual(combination.points(using: config), 1250) // 1000 + 250 (ones always 1000)
+    }
 }

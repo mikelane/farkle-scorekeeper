@@ -80,13 +80,4 @@ enum ScoringCombinationType: String, CaseIterable, Codable, Sendable {
         }
     }
 
-    var supportsCustomPoints: Bool {
-        switch self {
-        case .singleOne, .singleFive, .fourOfAKind, .fiveOfAKind, .sixOfAKind,
-             .fullMansion, .threePairs, .twoTriplets, .smallStraight, .largeStraight, .sixDiceFarkle:
-            return true
-        case .threeOfAKind, .sixOnes, .fullHouse:
-            return false
-        }
-    }
 }

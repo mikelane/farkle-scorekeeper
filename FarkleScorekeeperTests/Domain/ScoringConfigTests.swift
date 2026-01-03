@@ -151,7 +151,7 @@ final class ScoringConfigTests: XCTestCase {
     }
 
     func test_configsWithDifferentEnabledCombinations_areNotEqual() {
-        var config1 = ScoringConfig.standard
+        let config1 = ScoringConfig.standard
         var config2 = ScoringConfig.standard
         config2.setEnabled(false, for: .threePairs)
 
