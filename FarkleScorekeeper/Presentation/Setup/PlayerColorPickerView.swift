@@ -25,6 +25,7 @@ struct PlayerColorPickerView: View {
                         }
                         .shadow(color: selectedColor == color ? color.swiftUIColor.opacity(0.5) : .clear, radius: 4)
                 }
+                .buttonStyle(.borderless)
                 .accessibilityLabel(color.rawValue)
                 .accessibilityAddTraits(selectedColor == color ? .isSelected : [])
             }
