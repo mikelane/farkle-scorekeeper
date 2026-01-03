@@ -11,6 +11,8 @@ struct PlayerDisplayInfo: Equatable, Sendable {
     let score: Int
     let status: FinalRoundPlayerStatus
     let isCurrentPlayer: Bool
+    let color: PlayerColor
+    let icon: String
 }
 
 @Observable
@@ -108,17 +110,39 @@ final class GameViewModel {
                 name: player.name,
                 score: player.score,
                 status: status,
-                isCurrentPlayer: index == game.currentPlayerIndex
+                isCurrentPlayer: index == game.currentPlayerIndex,
+                color: player.displayColor,
+                icon: player.displayIcon
             )
         }
+    }
+
+    var currentPlayerColor: PlayerColor {
+        game.currentPlayer.displayColor
+    }
+
+    var currentPlayerIcon: String {
+        game.currentPlayer.displayIcon
+    }
+
+    var currentPlayerDisplayName: String {
+        game.currentPlayer.displayNameWithIcon
     }
 
     init(playerNames: [String]) {
         self.game = Game(playerNames: playerNames)
     }
 
+    init(playerConfigs: [PlayerConfig]) {
+        self.game = Game(playerConfigs: playerConfigs)
+    }
+
     init(playerNames: [String], houseRules: HouseRules) {
         self.game = Game(playerNames: playerNames, houseRules: houseRules)
+    }
+
+    init(playerConfigs: [PlayerConfig], houseRules: HouseRules) {
+        self.game = Game(playerConfigs: playerConfigs, houseRules: houseRules)
     }
 
     func addScore(_ combination: ScoringCombination) {

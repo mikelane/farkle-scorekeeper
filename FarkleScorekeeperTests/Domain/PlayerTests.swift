@@ -18,6 +18,41 @@ final class PlayerTests: XCTestCase {
         XCTAssertEqual(player.score, 0)
     }
 
+    // MARK: - Color Tests
+
+    func test_init_defaultColorIsNil() {
+        let player = Player(id: UUID(), name: "Alice")
+
+        XCTAssertNil(player.color)
+    }
+
+    func test_init_canSetColor() {
+        let player = Player(id: UUID(), name: "Alice", color: .blue)
+
+        XCTAssertEqual(player.color, .blue)
+    }
+
+    // MARK: - Icon Tests
+
+    func test_init_defaultIconIsNil() {
+        let player = Player(id: UUID(), name: "Alice")
+
+        XCTAssertNil(player.icon)
+    }
+
+    func test_init_canSetIcon() {
+        let player = Player(id: UUID(), name: "Alice", icon: "dice")
+
+        XCTAssertEqual(player.icon, "dice")
+    }
+
+    func test_init_canSetBothColorAndIcon() {
+        let player = Player(id: UUID(), name: "Alice", color: .purple, icon: "rocket")
+
+        XCTAssertEqual(player.color, .purple)
+        XCTAssertEqual(player.icon, "rocket")
+    }
+
     // MARK: - Identifiable Tests
 
     func test_conformsToIdentifiable() {
@@ -42,5 +77,47 @@ final class PlayerTests: XCTestCase {
         let player2 = Player(id: UUID(), name: "Alice")
 
         XCTAssertNotEqual(player1, player2)
+    }
+
+    // MARK: - Display Color Tests
+
+    func test_displayColor_returnsAssignedColorIfSet() {
+        let player = Player(id: UUID(), name: "Alice", color: .purple)
+
+        XCTAssertEqual(player.displayColor, .purple)
+    }
+
+    func test_displayColor_returnsDefaultColorIfNil() {
+        let player = Player(id: UUID(), name: "Alice")
+
+        XCTAssertEqual(player.displayColor, .blue)
+    }
+
+    // MARK: - Display Icon Tests
+
+    func test_displayIcon_returnsAssignedIconIfSet() {
+        let player = Player(id: UUID(), name: "Alice", icon: "rocket")
+
+        XCTAssertEqual(player.displayIcon, "rocket")
+    }
+
+    func test_displayIcon_returnsDefaultIconIfNil() {
+        let player = Player(id: UUID(), name: "Alice")
+
+        XCTAssertEqual(player.displayIcon, "dice")
+    }
+
+    // MARK: - Display Name With Icon Tests
+
+    func test_displayNameWithIcon_includesEmojiAndName() {
+        let player = Player(id: UUID(), name: "Alice", icon: "rocket")
+
+        XCTAssertEqual(player.displayNameWithIcon, "\u{1F680} Alice")
+    }
+
+    func test_displayNameWithIcon_usesDefaultIconWhenNil() {
+        let player = Player(id: UUID(), name: "Alice")
+
+        XCTAssertEqual(player.displayNameWithIcon, "\u{1F3B2} Alice")
     }
 }

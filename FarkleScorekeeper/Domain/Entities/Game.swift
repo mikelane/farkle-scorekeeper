@@ -49,6 +49,18 @@ struct Game: Sendable {
         self.currentTurn = Turn()
     }
 
+    init(playerConfigs: [PlayerConfig]) {
+        self.init(playerConfigs: playerConfigs, houseRules: HouseRules())
+    }
+
+    init(playerConfigs: [PlayerConfig], houseRules: HouseRules) {
+        self.players = playerConfigs.map {
+            Player(id: UUID(), name: $0.name, color: $0.color, icon: $0.icon)
+        }
+        self.houseRules = houseRules
+        self.currentTurn = Turn()
+    }
+
     mutating func addScore(_ combination: ScoringCombination) {
         currentTurn.addScore(combination)
     }
