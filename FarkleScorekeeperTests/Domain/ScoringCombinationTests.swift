@@ -325,4 +325,93 @@ final class ScoringCombinationTests: XCTestCase {
 
         XCTAssertEqual(combination.displayName, "Six-Dice Farkle")
     }
+
+    // MARK: - points(using:) with Standard Config Tests
+
+    func test_singleOne_withStandardConfig_returns100Points() {
+        let combination = ScoringCombination.singleOne
+        let config = ScoringConfig.standard
+
+        XCTAssertEqual(combination.points(using: config), 100)
+    }
+
+    func test_singleFive_withStandardConfig_returns50Points() {
+        let combination = ScoringCombination.singleFive
+        let config = ScoringConfig.standard
+
+        XCTAssertEqual(combination.points(using: config), 50)
+    }
+
+    func test_threeOfAKindWithOnes_withStandardConfig_returns1000Points() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 1)
+        let config = ScoringConfig.standard
+
+        XCTAssertEqual(combination.points(using: config), 1000)
+    }
+
+    func test_threeOfAKindWithFours_withStandardConfig_returns400Points() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 4)
+        let config = ScoringConfig.standard
+
+        XCTAssertEqual(combination.points(using: config), 400)
+    }
+
+    func test_fourOfAKind_withStandardConfig_returns2000Points() {
+        let combination = ScoringCombination.fourOfAKind
+        let config = ScoringConfig.standard
+
+        XCTAssertEqual(combination.points(using: config), 2000)
+    }
+
+    // MARK: - points(using:) with Custom Points Tests
+
+    func test_singleOne_withCustomPoints50_returns50Points() {
+        let combination = ScoringCombination.singleOne
+        var config = ScoringConfig.standard
+        config.setCustomPoints(50, for: .singleOne)
+
+        XCTAssertEqual(combination.points(using: config), 50)
+    }
+
+    func test_singleFive_withCustomPoints100_returns100Points() {
+        let combination = ScoringCombination.singleFive
+        var config = ScoringConfig.standard
+        config.setCustomPoints(100, for: .singleFive)
+
+        XCTAssertEqual(combination.points(using: config), 100)
+    }
+
+    func test_fourOfAKind_withCustomPoints1000_returns1000Points() {
+        let combination = ScoringCombination.fourOfAKind
+        var config = ScoringConfig.standard
+        config.setCustomPoints(1000, for: .fourOfAKind)
+
+        XCTAssertEqual(combination.points(using: config), 1000)
+    }
+
+    // MARK: - points(using:) with Custom Three of a Kind Multiplier Tests
+
+    func test_threeOfAKindWithFours_with50xMultiplier_returns200Points() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 4)
+        var config = ScoringConfig.standard
+        config.threeOfAKindMultiplier = 50
+
+        XCTAssertEqual(combination.points(using: config), 200)
+    }
+
+    func test_threeOfAKindWithOnes_with50xMultiplier_stillReturns1000Points() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 1)
+        var config = ScoringConfig.standard
+        config.threeOfAKindMultiplier = 50
+
+        XCTAssertEqual(combination.points(using: config), 1000)
+    }
+
+    func test_threeOfAKindWithSixes_with200xMultiplier_returns1200Points() {
+        let combination = ScoringCombination.threeOfAKind(dieValue: 6)
+        var config = ScoringConfig.standard
+        config.threeOfAKindMultiplier = 200
+
+        XCTAssertEqual(combination.points(using: config), 1200)
+    }
 }
