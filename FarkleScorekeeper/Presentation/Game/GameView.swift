@@ -7,6 +7,10 @@ struct GameView: View {
         _viewModel = State(initialValue: GameViewModel(playerNames: playerNames))
     }
 
+    init(playerConfigs: [PlayerConfig]) {
+        _viewModel = State(initialValue: GameViewModel(playerConfigs: playerConfigs))
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
@@ -41,10 +45,20 @@ struct GameView: View {
                     .accessibilityIdentifier("lastChanceIndicator")
             }
 
-            Text(viewModel.currentPlayerName)
-                .font(.title)
-                .fontWeight(.bold)
-                .accessibilityIdentifier("currentPlayer")
+            HStack(spacing: 8) {
+                Circle()
+                    .fill(viewModel.currentPlayerColor.swiftUIColor)
+                    .frame(width: 40, height: 40)
+                    .overlay {
+                        Text(PlayerIcon.displayText(for: viewModel.currentPlayerIcon) ?? "")
+                            .font(.title3)
+                    }
+
+                Text(viewModel.currentPlayerName)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .accessibilityIdentifier("currentPlayer")
+            }
 
             HStack(spacing: 24) {
                 VStack {

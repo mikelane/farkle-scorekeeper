@@ -201,4 +201,101 @@ final class PlayerSetupViewModelTests: XCTestCase {
 
         XCTAssertEqual(viewModel.suggestedNames, ["Alice", "Bob", "Charlie"])
     }
+
+    // MARK: - Color Selection Tests
+
+    func test_init_playerColorsHasCorrectCount() {
+        let viewModel = PlayerSetupViewModel()
+
+        XCTAssertEqual(viewModel.playerColors.count, 2)
+    }
+
+    func test_init_playerColorsHaveDefaultValues() {
+        let viewModel = PlayerSetupViewModel()
+
+        XCTAssertEqual(viewModel.playerColors[0], PlayerColor.default(forIndex: 0))
+        XCTAssertEqual(viewModel.playerColors[1], PlayerColor.default(forIndex: 1))
+    }
+
+    func test_setPlayerCount_increasingCount_addsDefaultColors() {
+        var viewModel = PlayerSetupViewModel()
+        viewModel.playerColors[0] = .purple
+
+        viewModel.playerCount = 3
+
+        XCTAssertEqual(viewModel.playerColors.count, 3)
+        XCTAssertEqual(viewModel.playerColors[0], .purple)
+        XCTAssertEqual(viewModel.playerColors[2], PlayerColor.default(forIndex: 2))
+    }
+
+    func test_setPlayerCount_decreasingCount_removesExtraColors() {
+        var viewModel = PlayerSetupViewModel()
+        viewModel.playerCount = 3
+
+        viewModel.playerCount = 2
+
+        XCTAssertEqual(viewModel.playerColors.count, 2)
+    }
+
+    // MARK: - Icon Selection Tests
+
+    func test_init_playerIconsHasCorrectCount() {
+        let viewModel = PlayerSetupViewModel()
+
+        XCTAssertEqual(viewModel.playerIcons.count, 2)
+    }
+
+    func test_init_playerIconsHaveDefaultValues() {
+        let viewModel = PlayerSetupViewModel()
+
+        XCTAssertEqual(viewModel.playerIcons[0], PlayerIcon.default(forIndex: 0))
+        XCTAssertEqual(viewModel.playerIcons[1], PlayerIcon.default(forIndex: 1))
+    }
+
+    func test_setPlayerCount_increasingCount_addsDefaultIcons() {
+        var viewModel = PlayerSetupViewModel()
+        viewModel.playerIcons[0] = "rocket"
+
+        viewModel.playerCount = 3
+
+        XCTAssertEqual(viewModel.playerIcons.count, 3)
+        XCTAssertEqual(viewModel.playerIcons[0], "rocket")
+        XCTAssertEqual(viewModel.playerIcons[2], PlayerIcon.default(forIndex: 2))
+    }
+
+    func test_setPlayerCount_decreasingCount_removesExtraIcons() {
+        var viewModel = PlayerSetupViewModel()
+        viewModel.playerCount = 3
+
+        viewModel.playerCount = 2
+
+        XCTAssertEqual(viewModel.playerIcons.count, 2)
+    }
+
+    // MARK: - Player Config Tests
+
+    func test_playerConfigs_returnsConfigsWithNamesColorsAndIcons() {
+        var viewModel = PlayerSetupViewModel()
+        viewModel.playerNames[0] = "Alice"
+        viewModel.playerNames[1] = "Bob"
+        viewModel.playerColors[0] = .purple
+        viewModel.playerIcons[1] = "rocket"
+
+        let configs = viewModel.playerConfigs
+
+        XCTAssertEqual(configs.count, 2)
+        XCTAssertEqual(configs[0].name, "Alice")
+        XCTAssertEqual(configs[0].color, .purple)
+        XCTAssertEqual(configs[1].name, "Bob")
+        XCTAssertEqual(configs[1].icon, "rocket")
+    }
+
+    func test_playerConfigs_usesDefaultNamesForEmptyNames() {
+        let viewModel = PlayerSetupViewModel()
+
+        let configs = viewModel.playerConfigs
+
+        XCTAssertEqual(configs[0].name, "Player 1")
+        XCTAssertEqual(configs[1].name, "Player 2")
+    }
 }

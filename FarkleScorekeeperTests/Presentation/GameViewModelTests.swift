@@ -471,4 +471,69 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.isCombinationAvailable(.singleOne)) // Needs 1 die
         XCTAssertFalse(viewModel.isCombinationAvailable(.threeOfAKind(dieValue: 3))) // Needs 3 dice
     }
+
+    // MARK: - Player Color and Icon Tests
+
+    func test_init_withPlayerConfigs_createsGameWithColorsAndIcons() {
+        let configs = [
+            PlayerConfig(name: "Alice", color: .purple, icon: "🚀"),
+            PlayerConfig(name: "Bob", color: .green, icon: "⭐️")
+        ]
+
+        let viewModel = GameViewModel(playerConfigs: configs)
+
+        XCTAssertEqual(viewModel.currentPlayerName, "Alice")
+        XCTAssertEqual(viewModel.currentPlayerColor, .purple)
+        XCTAssertEqual(viewModel.currentPlayerIcon, "🚀")
+    }
+
+    func test_init_withPlayerConfigsAndHouseRules_usesProvidedRules() {
+        let configs = [PlayerConfig(name: "Alice", color: .blue, icon: "🎲")]
+        let rules = HouseRules(targetScore: 5000)
+
+        let viewModel = GameViewModel(playerConfigs: configs, houseRules: rules)
+
+        XCTAssertEqual(viewModel.targetScore, 5000)
+    }
+
+    func test_currentPlayerColor_returnsPlayerDisplayColor() {
+        let configs = [
+            PlayerConfig(name: "Alice", color: .purple, icon: "🚀"),
+            PlayerConfig(name: "Bob", color: .orange, icon: "⭐️")
+        ]
+        var viewModel = GameViewModel(playerConfigs: configs)
+
+        XCTAssertEqual(viewModel.currentPlayerColor, .purple)
+
+        viewModel.farkle() // Advance to Bob
+
+        XCTAssertEqual(viewModel.currentPlayerColor, .orange)
+    }
+
+    func test_currentPlayerIcon_returnsPlayerDisplayIcon() {
+        let configs = [
+            PlayerConfig(name: "Alice", color: .blue, icon: "🎲"),
+            PlayerConfig(name: "Bob", color: .green, icon: "🎯")
+        ]
+        var viewModel = GameViewModel(playerConfigs: configs)
+
+        XCTAssertEqual(viewModel.currentPlayerIcon, "🎲")
+
+        viewModel.farkle() // Advance to Bob
+
+        XCTAssertEqual(viewModel.currentPlayerIcon, "🎯")
+    }
+
+    func test_playersInfo_includesColorAndIcon() {
+        let configs = [
+            PlayerConfig(name: "Alice", color: .purple, icon: "🚀"),
+            PlayerConfig(name: "Bob", color: .green, icon: "⭐️")
+        ]
+        let viewModel = GameViewModel(playerConfigs: configs)
+
+        XCTAssertEqual(viewModel.playersInfo[0].color, .purple)
+        XCTAssertEqual(viewModel.playersInfo[0].icon, "🚀")
+        XCTAssertEqual(viewModel.playersInfo[1].color, .green)
+        XCTAssertEqual(viewModel.playersInfo[1].icon, "⭐️")
+    }
 }
