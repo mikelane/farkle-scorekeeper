@@ -427,4 +427,48 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.playersInfo[0].isCurrentPlayer)
         XCTAssertTrue(viewModel.playersInfo[1].isCurrentPlayer)
     }
+
+    // MARK: - Combination Availability with Scoring Config Tests
+
+    func test_isCombinationAvailable_disabledCombination_isFalse() {
+        var scoringConfig = ScoringConfig.standard
+        scoringConfig.setEnabled(false, for: .threePairs)
+        let houseRules = HouseRules(scoringConfig: scoringConfig)
+        let viewModel = GameViewModel(playerNames: ["Alice"], houseRules: houseRules)
+
+        XCTAssertFalse(viewModel.isCombinationAvailable(.threePairs))
+    }
+
+    func test_isCombinationAvailable_enabledCombination_isTrue() {
+        let houseRules = HouseRules(scoringConfig: .standard)
+        let viewModel = GameViewModel(playerNames: ["Alice"], houseRules: houseRules)
+
+        XCTAssertTrue(viewModel.isCombinationAvailable(.threePairs))
+    }
+
+    func test_isCombinationAvailable_disabledSixDiceFarkle_isFalseOnFirstRoll() {
+        var scoringConfig = ScoringConfig.standard
+        scoringConfig.setEnabled(false, for: .sixDiceFarkle)
+        let houseRules = HouseRules(scoringConfig: scoringConfig)
+        let viewModel = GameViewModel(playerNames: ["Alice"], houseRules: houseRules)
+
+        XCTAssertFalse(viewModel.isCombinationAvailable(.sixDiceFarkle))
+    }
+
+    func test_isCombinationAvailable_disabledSingleOne_isFalseEvenWithEnoughDice() {
+        var scoringConfig = ScoringConfig.standard
+        scoringConfig.setEnabled(false, for: .singleOne)
+        let houseRules = HouseRules(scoringConfig: scoringConfig)
+        let viewModel = GameViewModel(playerNames: ["Alice"], houseRules: houseRules)
+
+        XCTAssertFalse(viewModel.isCombinationAvailable(.singleOne))
+    }
+
+    func test_isCombinationAvailable_enabledButNotEnoughDice_isFalse() {
+        var viewModel = GameViewModel(playerNames: ["Alice"])
+        viewModel.addScore(.fourOfAKind) // Now has 2 dice
+
+        XCTAssertTrue(viewModel.isCombinationAvailable(.singleOne)) // Needs 1 die
+        XCTAssertFalse(viewModel.isCombinationAvailable(.threeOfAKind(dieValue: 3))) // Needs 3 dice
+    }
 }
