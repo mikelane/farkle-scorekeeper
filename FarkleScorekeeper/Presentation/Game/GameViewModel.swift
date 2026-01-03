@@ -139,6 +139,9 @@ final class GameViewModel {
     }
 
     func isCombinationAvailable(_ combination: ScoringCombination) -> Bool {
+        guard game.houseRules.scoringConfig.isEnabled(combination.combinationType) else {
+            return false
+        }
         guard diceRemaining >= combination.diceCount else {
             return false
         }

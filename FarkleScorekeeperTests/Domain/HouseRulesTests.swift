@@ -119,4 +119,50 @@ final class HouseRulesTests: XCTestCase {
         XCTAssertTrue(decoded.finalRoundEnabled)
         XCTAssertFalse(decoded.defendYourWin)
     }
+
+    // MARK: - ScoringConfig Tests
+
+    func test_default_scoringConfigIsStandard() {
+        let rules = HouseRules()
+
+        XCTAssertEqual(rules.scoringConfig, ScoringConfig.standard)
+    }
+
+    func test_init_acceptsCustomScoringConfig() {
+        var customConfig = ScoringConfig.standard
+        customConfig.setEnabled(false, for: .threePairs)
+        let rules = HouseRules(scoringConfig: customConfig)
+
+        XCTAssertFalse(rules.scoringConfig.isEnabled(.threePairs))
+    }
+
+    func test_rulesWithDifferentScoringConfig_areNotEqual() {
+        var customConfig = ScoringConfig.standard
+        customConfig.setEnabled(false, for: .threePairs)
+        let rules1 = HouseRules()
+        let rules2 = HouseRules(scoringConfig: customConfig)
+
+        XCTAssertNotEqual(rules1, rules2)
+    }
+
+    func test_encodesAndDecodesWithScoringConfig() throws {
+        var customConfig = ScoringConfig.standard
+        customConfig.setEnabled(false, for: .threePairs)
+        customConfig.setCustomPoints(1000, for: .fourOfAKind)
+        let original = HouseRules(scoringConfig: customConfig)
+
+        let data = try JSONEncoder().encode(original)
+        let decoded = try JSONDecoder().decode(HouseRules.self, from: data)
+
+        XCTAssertEqual(decoded.scoringConfig, customConfig)
+    }
+
+    func test_decodesFromJSONWithMissingScoringConfig_usesStandard() throws {
+        let json = "{\"targetScore\": 5000}"
+        let data = json.data(using: .utf8)!
+
+        let decoded = try JSONDecoder().decode(HouseRules.self, from: data)
+
+        XCTAssertEqual(decoded.scoringConfig, ScoringConfig.standard)
+    }
 }

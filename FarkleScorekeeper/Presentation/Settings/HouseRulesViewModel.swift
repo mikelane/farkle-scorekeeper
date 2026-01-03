@@ -4,6 +4,7 @@ import Observation
 @Observable
 final class HouseRulesViewModel {
     private let repository: HouseRulesRepository
+    private var scoringConfig: ScoringConfig
 
     var targetScore: Int {
         didSet { save() }
@@ -14,6 +15,13 @@ final class HouseRulesViewModel {
     var defendYourWin: Bool {
         didSet { save() }
     }
+    var threeOfAKindMultiplier: Int {
+        get { scoringConfig.threeOfAKindMultiplier }
+        set {
+            scoringConfig.threeOfAKindMultiplier = newValue
+            save()
+        }
+    }
 
     let presetTargetScores = HouseRules.presetTargetScores
 
@@ -23,13 +31,43 @@ final class HouseRulesViewModel {
         self.targetScore = rules.targetScore
         self.finalRoundEnabled = rules.finalRoundEnabled
         self.defendYourWin = rules.defendYourWin
+        self.scoringConfig = rules.scoringConfig
+    }
+
+    func isCombinationEnabled(_ combinationType: ScoringCombinationType) -> Bool {
+        scoringConfig.isEnabled(combinationType)
+    }
+
+    func setCombinationEnabled(_ enabled: Bool, for combinationType: ScoringCombinationType) {
+        scoringConfig.setEnabled(enabled, for: combinationType)
+        save()
+    }
+
+    func customPoints(for combinationType: ScoringCombinationType) -> Int? {
+        scoringConfig.customPoints[combinationType]
+    }
+
+    func setCustomPoints(_ points: Int, for combinationType: ScoringCombinationType) {
+        scoringConfig.setCustomPoints(points, for: combinationType)
+        save()
+    }
+
+    func clearCustomPoints(for combinationType: ScoringCombinationType) {
+        scoringConfig.clearCustomPoints(for: combinationType)
+        save()
+    }
+
+    func resetScoringConfigToStandard() {
+        scoringConfig.resetToStandard()
+        save()
     }
 
     private func save() {
         let rules = HouseRules(
             targetScore: targetScore,
             finalRoundEnabled: finalRoundEnabled,
-            defendYourWin: defendYourWin
+            defendYourWin: defendYourWin,
+            scoringConfig: scoringConfig
         )
         repository.save(rules)
     }
