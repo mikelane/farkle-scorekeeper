@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct PlayerIconPickerView: View {
-    @Binding var selectedIcon: String
+    let selectedIcon: String
+    let onSelect: (String) -> Void
 
     private let columns = [
         GridItem(.adaptive(minimum: 44))
@@ -11,7 +12,7 @@ struct PlayerIconPickerView: View {
         LazyVGrid(columns: columns, spacing: 8) {
             ForEach(PlayerIcon.defaultEmojis, id: \.self) { iconName in
                 Button {
-                    selectedIcon = iconName
+                    onSelect(iconName)
                 } label: {
                     Text(PlayerIcon.displayText(for: iconName) ?? iconName)
                         .font(.title2)
@@ -44,7 +45,9 @@ struct PlayerIconPickerView: View {
         var body: some View {
             VStack {
                 Text("Selected: \(PlayerIcon.displayText(for: icon) ?? icon)")
-                PlayerIconPickerView(selectedIcon: $icon)
+                PlayerIconPickerView(selectedIcon: icon) { newIcon in
+                    icon = newIcon
+                }
             }
             .padding()
         }

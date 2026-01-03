@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct PlayerColorPickerView: View {
-    @Binding var selectedColor: PlayerColor
+    let selectedColor: PlayerColor
+    let onSelect: (PlayerColor) -> Void
 
     private let columns = [
         GridItem(.adaptive(minimum: 44))
@@ -11,7 +12,7 @@ struct PlayerColorPickerView: View {
         LazyVGrid(columns: columns, spacing: 8) {
             ForEach(PlayerColor.allCases, id: \.self) { color in
                 Button {
-                    selectedColor = color
+                    onSelect(color)
                 } label: {
                     Circle()
                         .fill(color.swiftUIColor)
@@ -39,7 +40,9 @@ struct PlayerColorPickerView: View {
         var body: some View {
             VStack {
                 Text("Selected: \(color.rawValue)")
-                PlayerColorPickerView(selectedColor: $color)
+                PlayerColorPickerView(selectedColor: color) { newColor in
+                    color = newColor
+                }
             }
             .padding()
         }
