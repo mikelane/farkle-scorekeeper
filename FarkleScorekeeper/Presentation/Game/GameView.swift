@@ -57,8 +57,8 @@ struct GameView: View {
                 Text(viewModel.currentPlayerName)
                     .font(.title)
                     .fontWeight(.bold)
+                    .accessibilityIdentifier("currentPlayer")
             }
-            .accessibilityIdentifier("currentPlayer")
 
             HStack(spacing: 24) {
                 VStack {

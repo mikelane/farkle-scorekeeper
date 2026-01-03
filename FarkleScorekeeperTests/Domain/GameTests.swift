@@ -51,6 +51,43 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(game.currentTurn.diceRemaining, 6)
     }
 
+    // MARK: - PlayerConfig Initialization Tests
+
+    func test_init_withPlayerConfigs_createsPlayersWithColorsAndIcons() {
+        let configs = [
+            PlayerConfig(name: "Alice", color: .purple, icon: "🚀"),
+            PlayerConfig(name: "Bob", color: .green, icon: "⭐️")
+        ]
+
+        let game = Game(playerConfigs: configs)
+
+        XCTAssertEqual(game.players.count, 2)
+        XCTAssertEqual(game.players[0].name, "Alice")
+        XCTAssertEqual(game.players[0].color, .purple)
+        XCTAssertEqual(game.players[0].icon, "🚀")
+        XCTAssertEqual(game.players[1].name, "Bob")
+        XCTAssertEqual(game.players[1].color, .green)
+        XCTAssertEqual(game.players[1].icon, "⭐️")
+    }
+
+    func test_init_withPlayerConfigs_usesDefaultHouseRules() {
+        let configs = [PlayerConfig(name: "Alice", color: .blue, icon: "🎲")]
+
+        let game = Game(playerConfigs: configs)
+
+        XCTAssertEqual(game.houseRules, HouseRules())
+    }
+
+    func test_init_withPlayerConfigsAndHouseRules_usesProvidedRules() {
+        let configs = [PlayerConfig(name: "Alice", color: .blue, icon: "🎲")]
+        let rules = HouseRules(targetScore: 5000, finalRoundEnabled: false)
+
+        let game = Game(playerConfigs: configs, houseRules: rules)
+
+        XCTAssertEqual(game.houseRules, rules)
+        XCTAssertEqual(game.targetScore, 5000)
+    }
+
     // MARK: - currentPlayer Tests
 
     func test_currentPlayer_returnsFirstPlayerInitially() {

@@ -55,6 +55,7 @@
 		B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663647530A697BD5C80326F3 /* ThemeManager.swift */; };
 		B7C9E9601AA9842BDD1ECEAF /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9947668616E5E8889DDE2 /* GameViewModelTests.swift */; };
 		C687BEC9886902DE578ABCB7 /* ScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E895275D181F1153ECDA05E7 /* ScoringTests.swift */; };
+		C768C716DC90691885F3747E /* PlayerColor+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5C3F2C231654F73BFE0CDE /* PlayerColor+SwiftUI.swift */; };
 		C77E07F1BA139BD02956322A /* PlayerColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07621563213DE94274F1A1CF /* PlayerColorTests.swift */; };
 		D0EA6EF54BFE5D99C0AC10DE /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5F5672730FD5906D4FFBF /* GameTests.swift */; };
 		D3A9B1E50BB8E9DEFCEF1BF1 /* ResultsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7462E2FF83E1408B8DD1B /* ResultsCardView.swift */; };
@@ -124,6 +125,7 @@
 		888193B2951F5E1F6569C52F /* HouseRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRules.swift; sourceTree = "<group>"; };
 		8C9A1A5570E7A562D5FB7EE5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8E2D00CAE34EB6CD4EA81BA8 /* ScoringCombinationTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationTypeTests.swift; sourceTree = "<group>"; };
+		8F5C3F2C231654F73BFE0CDE /* PlayerColor+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerColor+SwiftUI.swift"; sourceTree = "<group>"; };
 		953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationTests.swift; sourceTree = "<group>"; };
 		97E7F19EDAC7D1905A3BBA2C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		A711D9AF3276433ECF2794F3 /* PlayerSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		725930FE2F3A1EFD8E2F8C5F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BA46328AD0EFC888F1A4A0A4 /* Extensions */,
 				769C8A325677B16AADEA8EB7 /* Game */,
 				79B46CDDB0F41833A22D8C67 /* Settings */,
 				B0D533060DA2642001E6F6B8 /* Setup */,
@@ -384,6 +387,14 @@
 				A711D9AF3276433ECF2794F3 /* PlayerSetupViewModel.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		BA46328AD0EFC888F1A4A0A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8F5C3F2C231654F73BFE0CDE /* PlayerColor+SwiftUI.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C52CC34349F229A21394B0F4 /* FarkleScorekeeper */ = {
@@ -575,6 +586,7 @@
 				27ED46A424440389DBF0E5A7 /* HouseRulesView.swift in Sources */,
 				600424E7D79DDCE79862332A /* HouseRulesViewModel.swift in Sources */,
 				7EDE0C27AE2377C887A98466 /* Player.swift in Sources */,
+				C768C716DC90691885F3747E /* PlayerColor+SwiftUI.swift in Sources */,
 				3D50AE967B602DCDB133670F /* PlayerColor.swift in Sources */,
 				2989E9E3EF968DD02EED557C /* PlayerColorPickerView.swift in Sources */,
 				4F88F827BAFC180892FBF0B6 /* PlayerIcon.swift in Sources */,
