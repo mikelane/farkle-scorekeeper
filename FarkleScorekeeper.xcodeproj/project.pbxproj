@@ -22,6 +22,7 @@
 		4516F33F7EB35C2DB81A07B9 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86914B16DF08EDA8A380382F /* Turn.swift */; };
 		4AE540B6F1225D27284B3B55 /* ShareResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4163E863B427F0513920E79 /* ShareResultsView.swift */; };
 		543687A9445717FA69632D0A /* GameSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A35CAB4D2F9DB9F32A2E7 /* GameSteps.swift */; };
+		5452473322EB925DD252F65F /* ScoringCombinationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15344C8AEEAB08CA0D05542 /* ScoringCombinationType.swift */; };
 		550BB0D91E76848A19C824F4 /* PlayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A928644792708E3F50B569 /* PlayerStatistics.swift */; };
 		578606B3A95DA23D9D8743DE /* PlayerSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FED1F8C3B03455F6EADA /* PlayerSetupViewModelTests.swift */; };
 		600424E7D79DDCE79862332A /* HouseRulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382C21E6049070C614B97EB /* HouseRulesViewModel.swift */; };
@@ -34,14 +35,17 @@
 		7EDE0C27AE2377C887A98466 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A1A5570E7A562D5FB7EE5 /* Player.swift */; };
 		7FFE95DDFA3D307E3E686984 /* GameResultsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CADD1CF07415BD96060A5E /* GameResultsFormatter.swift */; };
 		800857AB149F966A0B2D5EDB /* FinalRoundBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DED41DE0E17DAAC9C6E44E /* FinalRoundBannerView.swift */; };
+		81C0F853E29A61BFED2B3DAB /* ScoringCombinationTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D00CAE34EB6CD4EA81BA8 /* ScoringCombinationTypeTests.swift */; };
 		885EFCD37C87E462BA1CA9F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */; };
 		8D8F33BD104F4979D6C608BE /* HouseRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888193B2951F5E1F6569C52F /* HouseRules.swift */; };
 		981206CB9ABAB82D68E91668 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847808F6895C4BC0F590EDCD /* GameViewModel.swift */; };
 		9B4C18068547E6400A96D789 /* StatisticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8334E3FDB162C757E3BFA656 /* StatisticsRepository.swift */; };
+		9FC8FC97C70CBA5DC28A961F /* ScoringConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA406380C53731FC04837DEC /* ScoringConfigTests.swift */; };
 		A91C65E680A276CCCEFB252C /* RecentPlayerNamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6FB6F08AE82FC4BDEF525F /* RecentPlayerNamesRepository.swift */; };
 		AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */; };
 		AD4DDAB86BEBC903CB2C4697 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1029ADDF2BE0A8F49E7676A /* GameView.swift */; };
 		B030D828006408A62EA785E9 /* PlayerStatisticsRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C0899EA6875451E97BD /* PlayerStatisticsRecord.swift */; };
+		B2B3279E43C071D9D0F822F8 /* ScoringConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4833475E2F58612B9A577F /* ScoringConfig.swift */; };
 		B3FD6DEEF20036A7FA752F71 /* PlayerSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711D9AF3276433ECF2794F3 /* PlayerSetupViewModel.swift */; };
 		B5FF64A89A0AF8F5A475261D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663647530A697BD5C80326F3 /* ThemeManager.swift */; };
 		B7C9E9601AA9842BDD1ECEAF /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9947668616E5E8889DDE2 /* GameViewModelTests.swift */; };
@@ -79,6 +83,7 @@
 		0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombination.swift; sourceTree = "<group>"; };
 		1382C21E6049070C614B97EB /* HouseRulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesViewModel.swift; sourceTree = "<group>"; };
 		19B5F5672730FD5906D4FFBF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		1D4833475E2F58612B9A577F /* ScoringConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringConfig.swift; sourceTree = "<group>"; };
 		21CADD1CF07415BD96060A5E /* GameResultsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsFormatter.swift; sourceTree = "<group>"; };
 		225B83A3E7B6D3DCF63B51ED /* ThemeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManagerTests.swift; sourceTree = "<group>"; };
 		259CD983D628D307348BBF39 /* ScoringEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngineTests.swift; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 		87B7462E2FF83E1408B8DD1B /* ResultsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardView.swift; sourceTree = "<group>"; };
 		888193B2951F5E1F6569C52F /* HouseRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRules.swift; sourceTree = "<group>"; };
 		8C9A1A5570E7A562D5FB7EE5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8E2D00CAE34EB6CD4EA81BA8 /* ScoringCombinationTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationTypeTests.swift; sourceTree = "<group>"; };
 		953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationTests.swift; sourceTree = "<group>"; };
 		97E7F19EDAC7D1905A3BBA2C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		A711D9AF3276433ECF2794F3 /* PlayerSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupViewModel.swift; sourceTree = "<group>"; };
@@ -122,10 +128,12 @@
 		CC956C1862E234CBD2FFA020 /* HouseRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseRulesTests.swift; sourceTree = "<group>"; };
 		D47F343803DC132397277896 /* FarkleScorekeeperTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FarkleScorekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FC0797CDEB35BB3E6BABB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E15344C8AEEAB08CA0D05542 /* ScoringCombinationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCombinationType.swift; sourceTree = "<group>"; };
 		E38A405567B552FC049CCB77 /* FarkleScorekeeper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FarkleScorekeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E895275D181F1153ECDA05E7 /* ScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringTests.swift; sourceTree = "<group>"; };
 		F1029ADDF2BE0A8F49E7676A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F5CBB0929C5932379662E31D /* FarkleScorekeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarkleScorekeeperApp.swift; sourceTree = "<group>"; };
+		FA406380C53731FC04837DEC /* ScoringConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringConfigTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -146,6 +154,8 @@
 				8C9A1A5570E7A562D5FB7EE5 /* Player.swift */,
 				54A928644792708E3F50B569 /* PlayerStatistics.swift */,
 				0D038B71A4B1EC95C659FA84 /* ScoringCombination.swift */,
+				E15344C8AEEAB08CA0D05542 /* ScoringCombinationType.swift */,
+				1D4833475E2F58612B9A577F /* ScoringConfig.swift */,
 				86914B16DF08EDA8A380382F /* Turn.swift */,
 			);
 			path = Entities;
@@ -330,6 +340,8 @@
 				2A79AD252AB8E2FF0A7BF0B3 /* PlayerStatisticsTests.swift */,
 				76C95312878359D9576CEE3C /* PlayerTests.swift */,
 				953F5FCAC8AD6B8854F4209F /* ScoringCombinationTests.swift */,
+				8E2D00CAE34EB6CD4EA81BA8 /* ScoringCombinationTypeTests.swift */,
+				FA406380C53731FC04837DEC /* ScoringConfigTests.swift */,
 				259CD983D628D307348BBF39 /* ScoringEngineTests.swift */,
 				6610A8EED5BECAF21F12CD82 /* TurnTests.swift */,
 			);
@@ -505,6 +517,8 @@
 				692C663E90E0828B0AA50954 /* PlayerTests.swift in Sources */,
 				40148F2FF410A7D521781E4A /* RecentPlayerNamesRepositoryTests.swift in Sources */,
 				DD91E1FF0E6E3094FA837F7D /* ScoringCombinationTests.swift in Sources */,
+				81C0F853E29A61BFED2B3DAB /* ScoringCombinationTypeTests.swift in Sources */,
+				9FC8FC97C70CBA5DC28A961F /* ScoringConfigTests.swift in Sources */,
 				D7840DCB5B2590D377C6C1C8 /* ScoringEngineTests.swift in Sources */,
 				60EBE586BBDC9343E0920F05 /* StatisticsRepositoryTests.swift in Sources */,
 				44ED191273FA03E13AFCE3BC /* ThemeManagerTests.swift in Sources */,
@@ -549,6 +563,8 @@
 				D3A9B1E50BB8E9DEFCEF1BF1 /* ResultsCardView.swift in Sources */,
 				04953B68D7F90A866A24D5D8 /* ScoreInputPadView.swift in Sources */,
 				AB1DA03604B0F8800D18B8A6 /* ScoringCombination.swift in Sources */,
+				5452473322EB925DD252F65F /* ScoringCombinationType.swift in Sources */,
+				B2B3279E43C071D9D0F822F8 /* ScoringConfig.swift in Sources */,
 				4AE540B6F1225D27284B3B55 /* ShareResultsView.swift in Sources */,
 				9B4C18068547E6400A96D789 /* StatisticsRepository.swift in Sources */,
 				0461A4F4EB04A27F083376F4 /* StatisticsRepositoryProtocol.swift in Sources */,
